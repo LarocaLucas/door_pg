@@ -13,7 +13,7 @@
 (function initCountdown() {
   const screen   = document.getElementById('countdownScreen');
   const skipBtn  = document.getElementById('cdSkip');
-  const target   = new Date('2026-04-01T00:00:00');
+  const target   = new Date('2026-04-16T20:00:00');
 
   function pad(n) { return String(n).padStart(2, '0'); }
 
