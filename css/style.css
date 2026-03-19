@@ -375,6 +375,27 @@ ul { list-style: none; }
 }
 .c-slot:hover .c-overlay { opacity: 1; }
 
+.galeria-cta-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--gray-dim);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem; flex-wrap: wrap;
+}
+.galeria-cta-text {
+  display: flex; align-items: center; gap: 1rem;
+  color: var(--white);
+}
+.galeria-cta-text strong {
+  display: block;
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+.galeria-cta-text span {
+  font-size: 0.78rem; color: var(--gray); line-height: 1.4;
+}
 .conheca-footer {
   display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
 }
@@ -396,6 +417,9 @@ ul { list-style: none; }
   display: flex; align-items: center; gap: 2rem;
   white-space: nowrap;
   animation: marquee 18s linear infinite;
+}
+@media (max-width: 600px) {
+  .marcas-track { animation: marquee 10s linear infinite; }
   width: max-content;
 }
 .marca-logo {
@@ -699,7 +723,8 @@ img, svg { max-width: 100%; height: auto; }
   .local-wrap { grid-template-columns: 1fr; }
   .local-art { display: none; }
   .local-wrap { overflow: visible; }
-  .section-title { font-size: 2rem; word-break: break-word; }
+  .section-title { font-size: clamp(1.6rem, 8vw, 2.5rem); word-break: break-word; white-space: normal; }
+  #local .section-title { font-size: clamp(1.4rem, 7vw, 2rem); }
   .contato-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
   .footer-bottom { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
