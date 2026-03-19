@@ -2,7 +2,7 @@
    DOOR PG — CSS
    Estética: luxury nightclub — minimalismo agressivo
    Paleta: #000 puro, #fff, #888 cinza
-   Fontes: Bebas Neue (display) + Montserrat (corpo) + Playfair (itálico)
+   Fontes: Bebas Neue (display) + Montserrat (corpo) + Cinzel (elegante)
    ============================================================ */
 
 /* ── RESET & VARIÁVEIS ────────────────────────────────── */
@@ -85,7 +85,7 @@ ul { list-style: none; }
 }
 .cd-title em {
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cinzel', serif;
   color: var(--gray-mid);
 }
 
@@ -322,7 +322,7 @@ ul { list-style: none; }
 }
 .section-title em {
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cinzel', serif;
   color: var(--gray);
 }
 
@@ -398,10 +398,10 @@ ul { list-style: none; }
 .marca-sep { color: var(--gray-dim); font-size: 0.5rem; flex-shrink: 0; }
 
 /* Ajustes individuais por logo */
-.marca-logo[alt="Red Bull"]      { height: 50px; }
+.marca-logo[alt="Red Bull"]      { height: 56px; }
 .marca-logo[alt="Tanqueray"]     { height: 90px; }
 .marca-logo[alt="Del Valle"]     { height: 44px; }
-.marca-logo[alt="Budweiser"]     { height: 40px; max-width: 140px; }
+.marca-logo[alt="Budweiser"]     { height: 36px; max-width: 160px; }
 .marca-logo[alt="Absolut"]       { height: 22px; }
 .marca-logo[alt="Johnnie Walker"]{ height: 30px; max-width: 160px; }
 .marca-logo[alt="José Cuervo"]   { height: 36px; }
@@ -461,7 +461,7 @@ ul { list-style: none; }
 }
 .road-quote {
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cinzel', serif;
   font-size: 1rem !important; color: var(--white) !important;
   border-left: 2px solid var(--white);
   padding-left: 1rem; margin-top: 1rem !important;
