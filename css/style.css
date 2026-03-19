@@ -399,11 +399,11 @@ ul { list-style: none; }
 
 /* Ajustes individuais por logo */
 .marca-logo[alt="Red Bull"]      { height: 44px; }
-.marca-logo[alt="Tanqueray"]     { height: 56px; }
+.marca-logo[alt="Tanqueray"]     { height: 70px; }
 .marca-logo[alt="Del Valle"]     { height: 44px; }
 .marca-logo[alt="Budweiser"]     { height: 22px; max-width: 140px; }
 .marca-logo[alt="Absolut"]       { height: 22px; }
-.marca-logo[alt="Johnnie Walker"]{ height: 22px; max-width: 130px; }
+.marca-logo[alt="Johnnie Walker"]{ height: 30px; max-width: 160px; }
 .marca-logo[alt="José Cuervo"]   { height: 36px; }
 .marca-logo[alt="Coca-Cola"]     { height: 32px; }
 .marca-logo[alt="Heineken"]      { height: 30px; }
