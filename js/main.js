@@ -102,7 +102,7 @@
   for (let i = 1; i <= TOTAL; i++) {
     const div = document.createElement('div');
     div.className = 'hero-slide' + (i === 1 ? ' active' : '');
-    div.style.backgroundImage = `url('assets/images/hero/${String(i).padStart(2,'0')}.jpeg')`;
+    div.style.backgroundImage = `url('assets/images/hero/${String(i).padStart(2,'0')}.jpg')`;
     container.appendChild(div);
     slides.push(div);
   }

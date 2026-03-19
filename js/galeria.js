@@ -18,8 +18,8 @@
  * @type {Array<{folder: string, label: string, total: number}>}
  */
 const EVENTOS = [
-  { folder: '04-04-2026', label: '04 · 04 · 2026', total: 20 },
-  { folder: '05-04-2026', label: '05 · 04 · 2026', total: 20 },
+  { folder: '04-04-2026', label: '04 · 04 · 2026', total: 5 },
+  { folder: '05-04-2026', label: '05 · 04 · 2026', total: 7 },
   // Adicione novos eventos aqui ↓
 ];
 
