@@ -178,6 +178,12 @@
   function render(animate) {
     slots.forEach((img, i) => {
       const idx = (offset + i) % TOTAL;
+      const slot = img.closest('.c-slot');
+      // Garante que o slot não muda de tamanho ao trocar foto
+      if (slot && !slot.dataset.locked) {
+        slot.dataset.locked = '1';
+        slot.style.height = slot.offsetHeight + 'px';
+      }
       if (animate) {
         img.style.transition = 'opacity 0.4s ease';
         img.style.opacity = '0';
@@ -230,7 +236,7 @@
     card.className = 'agenda-card';
 
     const img = document.createElement('img');
-    img.src = `assets/images/agenda/${file}.jpg`;
+    img.src = `assets/images/agenda/${file}.jpeg`;
     img.alt = label;
     img.loading = 'lazy';
 
