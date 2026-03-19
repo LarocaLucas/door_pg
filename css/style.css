@@ -383,13 +383,19 @@ ul { list-style: none; }
   animation: marquee 32s linear infinite;
   width: max-content;
 }
-.marca {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem; letter-spacing: 0.1em;
-  color: var(--gray-mid); transition: color 0.3s; cursor: default;
+.marca-logo {
+  height: 32px;
+  width: auto;
+  opacity: 0.4;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.3s;
+  cursor: default;
+  object-fit: contain;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
-.marca:hover { color: var(--white); }
-.marca-sep { color: var(--gray-dim); font-size: 0.5rem; }
+.marca-logo:hover { opacity: 0.9; }
+.marca-sep { color: var(--gray-dim); font-size: 0.5rem; flex-shrink: 0; }
 
 @keyframes marquee {
   0%   { transform: translateX(0); }
