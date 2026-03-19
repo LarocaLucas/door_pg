@@ -22,15 +22,16 @@ Door PG é uma balada de Ponta Grossa — PR com identidade sofisticada e públi
 - Estética luxury nightclub — minimalismo agressivo
 - Paleta: preto puro `#000`, branco `#fff`, cinza `#888`
 - Fontes: **Bebas Neue** (display) + **Montserrat** (corpo) + **Playfair Display** (itálico)
-- Countdown animado com tela de loading até 01/04/2026
-- Hero com slideshow das fotos da casa
-- Faixa de marcas parceiras com animação infinita
+- Countdown animado até 01/04/2026 — some automaticamente na data
+- Hero com slideshow das 13 fotos (troca a cada 4s)
+- Faixa de marcas parceiras com logos reais e animação infinita
+- Conheça a Door: rotação de 18 fotos (6 por vez, troca a cada 5s)
 
 ### Páginas
 - `index.html` — Home completa
-- `galeria.html` — Galeria de fotos por evento com download
+- `galeria.html` — Galeria de fotos por evento com download em qualidade original
 
-### Estrutura
+### Estrutura de arquivos
 ```
 /
 ├── index.html
@@ -44,48 +45,40 @@ Door PG é uma balada de Ponta Grossa — PR com identidade sofisticada e públi
 │   └── galeria.js
 └── assets/
     └── images/
-        ├── agenda/        ← artes no formato dd-mm.jpeg
-        ├── conheca/       ← 18 fotos numeradas 01-18.jpeg
+        ├── agenda/          ← artes da semana (dd-mm.jpeg)
+        ├── conheca/         ← 18 fotos: 01-18.jpg
         ├── galeria/
-        │   ├── 04-04-2026/  ← fotos numeradas 1.jpeg, 2.jpeg...
-        │   └── 05-04-2026/
-        ├── hero/          ← 13 fotos numeradas 01-13.jpeg
-        └── logos/         ← logo.png
+        │   └── DD-MM-AAAA/  ← fotos: 01.jpg, 02.jpg...
+        ├── hero/            ← 13 fotos: 01-13.jpg
+        └── logos/
+            ├── logo-door.png
+            ├── logo-completa.png
+            └── marcas/      ← logos das marcas parceiras
 ```
 
 ### Funcionalidades
-- Countdown até 01/04/2026 com botão "pular" para desenvolvimento
-- Hero slideshow automático com dots de navegação
-- Conheça a Door: rotação de 18 fotos (6 por vez, troca a cada 5s)
-- Faixa de marcas parceiras (marquee infinito)
-- Histórico/roadmap da balada com timeline
-- Agenda semanal com artes por dia
-- Reservas via WhatsApp segmentadas (Camarote / Bistrô / Aniversariante)
-- Localização com botão Google Maps
+- Countdown até 01/04/2026 com botão "pular"
+- Hero slideshow automático
+- Faixa de marcas com logos brancos
+- Agenda semanal por dia
+- Reservas via WhatsApp (Camarote / Bistrô / Aniversariante)
 - Modal "Em breve" para ingressos
 - Galeria por evento com download em qualidade original
-- Instagram fixo no nav, footer e seções estratégicas
 - Responsivo para mobile
-
-### Como adicionar novo evento na galeria
-1. Crie a pasta: `assets/images/galeria/DD-MM-AAAA/`
-2. Coloque as fotos numeradas: `1.jpeg`, `2.jpeg`, ...
-3. Registre no array `EVENTOS` em `js/galeria.js`:
-```js
-{ folder: 'DD-MM-AAAA', label: 'DD · MM · AAAA', total: N }
-```
-
-### Como atualizar a agenda semanal
-1. Coloque as novas artes em `assets/images/agenda/` no formato `dd-mm.jpeg`
-2. Atualize o array `AGENDA` em `js/main.js`
 
 ---
 
-## Hospedagem
+## Manutenção
 
-Hospedado via **GitHub Pages** no repositório `LarocaLucas/door_pg`.
+Ver **`GUIA-MANUTENCAO.md`** para instruções detalhadas.
 
-Ingressos: integração futura com **Sympla** ou **Ingresse**.
+---
+
+## Futuro
+
+- Ingressos: integração com Sympla ou Ingresse
+- Domínio: `door.com.br`
+- Atualizar endereço no Google Maps quando confirmado
 
 ---
 
