@@ -399,7 +399,7 @@ ul { list-style: none; }
 
 /* Ajustes individuais por logo */
 .marca-logo[alt="Red Bull"]      { height: 44px; }
-.marca-logo[alt="Tanqueray"]     { height: 44px; }
+.marca-logo[alt="Tanqueray"]     { height: 56px; }
 .marca-logo[alt="Del Valle"]     { height: 44px; }
 .marca-logo[alt="Budweiser"]     { height: 22px; max-width: 140px; }
 .marca-logo[alt="Absolut"]       { height: 22px; }
