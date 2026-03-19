@@ -18,6 +18,10 @@
   function pad(n) { return String(n).padStart(2, '0'); }
 
   function tick() {
+    // Guard — só executa se os elementos existirem (não existe na galeria.html)
+    const elDays = document.getElementById('cdDays');
+    if (!elDays) return;
+
     const now  = new Date();
     const diff = target - now;
 
@@ -31,7 +35,7 @@
     const minutes = Math.floor((diff % 3600000)  / 60000);
     const seconds = Math.floor((diff % 60000)    / 1000);
 
-    document.getElementById('cdDays').textContent    = pad(days);
+    elDays.textContent                                   = pad(days);
     document.getElementById('cdHours').textContent   = pad(hours);
     document.getElementById('cdMinutes').textContent = pad(minutes);
     document.getElementById('cdSeconds').textContent = pad(seconds);
@@ -225,9 +229,10 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '16-04', label: 'Quinta-Feira · 16/04' },
-    { file: '17-04', label: 'Sexta-Feira · 17/04'  },
-    { file: '18-04', label: 'Sábado · 18/04'   },
+    { file: '02-04', label: 'Quarta-feira · 02/04' },
+    { file: '03-04', label: 'Quinta-feira · 03/04'  },
+    { file: '04-04', label: 'Sexta-feira · 04/04'   },
+    { file: '05-04', label: 'Sábado · 05/04'         },
   ];
 
   AGENDA.forEach(({ file, label }) => {
