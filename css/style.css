@@ -342,8 +342,12 @@ ul { list-style: none; }
 }
 
 /* padding padrão */
-#conheca, #historico, #agenda, #reservas, #local, #contato {
+#conheca, #historico, #reservas, #local, #contato {
   padding: 7rem 4rem;
+  border-top: 1px solid var(--gray-dim);
+}
+#agenda {
+  padding: 7rem 4rem 3rem;
   border-top: 1px solid var(--gray-dim);
 }
 
@@ -537,8 +541,7 @@ ul { list-style: none; }
 
 .agenda-cta {
   text-align: center; border-top: 1px solid var(--gray-dim);
-  border-bottom: 1px solid var(--gray-dim);
-  padding: 1.5rem 0;
+  padding: 1.5rem 0 0;
   display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
 }
 .agenda-cta p { font-size: 0.8rem; color: var(--gray); letter-spacing: 0.1em; }
