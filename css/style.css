@@ -652,8 +652,10 @@ ul { list-style: none; }
   .conheca-grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 200px 200px 200px;
+    height: auto;
   }
-  .c-slot--lg { grid-row: span 2; }
+  .c-slot { height: 200px; }
+  .c-slot--lg { grid-row: span 2; height: 404px; }
 
   .reservas-grid { grid-template-columns: 1fr; }
   .local-wrap { grid-template-columns: 1fr; }
@@ -661,7 +663,19 @@ ul { list-style: none; }
   .contato-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
   .footer-bottom { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-  .road-item { grid-template-columns: 110px 1fr; }
+  .road-item {
+    grid-template-columns: 1fr;
+    padding-left: 2rem;
+  }
+  .road-left {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .road-year { text-align: left; }
+  .road-dot { position: static; }
 }
 
 @media (max-width: 600px) {
