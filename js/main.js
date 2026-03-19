@@ -22,8 +22,7 @@
     const diff = target - now;
 
     if (diff <= 0) {
-      // Countdown atingiu zero — oculta a tela
-      if (screen) screen.style.display = 'none';
+      hideCountdown();
       return;
     }
 
@@ -41,11 +40,29 @@
   tick();
   setInterval(tick, 1000);
 
-  // Botão "pular" — remove a tela imediatamente
+  // Travar scroll do body enquanto countdown está visível
+  if (screen && screen.style.display !== 'none') {
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Evita executar hide mais de uma vez
+  let hidden = false;
+  function hideCountdown() {
+    if (hidden) return;
+    hidden = true;
+    if (screen) {
+      screen.style.opacity = '0';
+      screen.style.transition = 'opacity 0.6s ease';
+      setTimeout(() => {
+        screen.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 600);
+    }
+  }
+
+  // Botão "pular"
   if (skipBtn) {
-    skipBtn.addEventListener('click', () => {
-      if (screen) screen.style.display = 'none';
-    });
+    skipBtn.addEventListener('click', hideCountdown);
   }
 })();
 
@@ -153,7 +170,7 @@
 
   // Pré-carregar caminhos
   const fotos = Array.from({ length: TOTAL }, (_, i) =>
-    `assets/images/conheca/${String(i + 1).padStart(2, '0')}.jpeg`
+    `assets/images/conheca/${String(i + 1).padStart(2, '0')}.jpg`
   );
 
   const slots = grid.querySelectorAll('.c-slot img');
@@ -162,18 +179,22 @@
     slots.forEach((img, i) => {
       const idx = (offset + i) % TOTAL;
       if (animate) {
+        img.style.transition = 'opacity 0.4s ease';
         img.style.opacity = '0';
-        img.style.transition = 'opacity 0.5s ease';
-      }
-      // Stagger de 60ms por slot
-      setTimeout(() => {
+        setTimeout(() => {
+          img.src = fotos[idx];
+          img.style.opacity = '1';
+        }, i * 80);
+      } else {
         img.src = fotos[idx];
         img.style.opacity = '1';
-      }, animate ? i * 60 : 0);
+        img.style.transition = 'none';
+      }
     });
   }
 
-  render(false); // render inicial sem animação
+  // Render inicial — espera DOM estar pronto
+  render(false);
 
   setInterval(() => {
     offset = (offset + SLOTS) % TOTAL;
@@ -209,7 +230,7 @@
     card.className = 'agenda-card';
 
     const img = document.createElement('img');
-    img.src = `assets/images/agenda/${file}.jpeg`;
+    img.src = `assets/images/agenda/${file}.jpg`;
     img.alt = label;
     img.loading = 'lazy';
 

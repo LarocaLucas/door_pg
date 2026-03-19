@@ -5,7 +5,7 @@
  * ─────────────────────────────────────────────────────
  * COMO ADICIONAR UM NOVO EVENTO:
  *   1. Crie a pasta: assets/images/galeria/DD-MM-AAAA/
- *   2. Coloque as fotos numeradas: 1.jpeg, 2.jpeg, ...
+ *   2. Coloque as fotos numeradas: 1.jpg, 2.jpg, ...
  *   3. Adicione uma entrada no array EVENTOS abaixo:
  *      { folder: 'DD-MM-AAAA', label: 'Dia Mês Ano', total: N }
  * ─────────────────────────────────────────────────────
@@ -79,7 +79,7 @@ function renderFotos(folder) {
 
   // Cria cards para cada foto
   for (let i = 1; i <= evento.total; i++) {
-    const src  = `assets/images/galeria/${folder}/${i}.jpeg`;
+    const src  = `assets/images/galeria/${folder}/${String(i).padStart(2,"0")}.jpg`;
     const card = criarFotoCard(src, i, folder);
     grid.appendChild(card);
   }
@@ -110,9 +110,15 @@ function criarFotoCard(src, num, folder) {
   img.alt     = `Foto ${num} — Door PG ${folder}`;
   img.loading = 'lazy'; // carregamento lazy para performance
 
-  // Trata erro (foto não encontrada)
+  // Trata erro — mostra placeholder cinza em vez de esconder
   img.addEventListener('error', () => {
-    card.style.display = 'none';
+    img.style.display = 'none';
+    card.style.background = '#111';
+    card.style.minHeight = '200px';
+    const msg = document.createElement('span');
+    msg.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#444;font-size:0.7rem;letter-spacing:0.2em';
+    msg.textContent = `FOTO ${String(num).padStart(2,'0')}`;
+    card.appendChild(msg);
   });
 
   // Overlay com download
@@ -123,7 +129,7 @@ function criarFotoCard(src, num, folder) {
   const dlLink = document.createElement('a');
   dlLink.className = 'foto-download';
   dlLink.href      = src;
-  dlLink.download  = `door-pg_${folder}_${String(num).padStart(2,'0')}.jpeg`;
+  dlLink.download  = `door-pg_${folder}_${String(num).padStart(2,'0')}.jpg`;
   dlLink.setAttribute('aria-label', `Baixar foto ${num}`);
   dlLink.innerHTML = `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
