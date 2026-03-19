@@ -384,10 +384,10 @@ ul { list-style: none; }
   width: max-content;
 }
 .marca-logo {
-  height: 32px;
+  height: 28px;
   width: auto;
-  opacity: 0.4;
-  filter: brightness(0) invert(1);
+  max-width: 120px;
+  opacity: 0.5;
   transition: opacity 0.3s;
   cursor: default;
   object-fit: contain;
@@ -396,6 +396,17 @@ ul { list-style: none; }
 }
 .marca-logo:hover { opacity: 0.9; }
 .marca-sep { color: var(--gray-dim); font-size: 0.5rem; flex-shrink: 0; }
+
+/* Ajustes individuais por logo */
+.marca-logo[alt="Red Bull"]      { height: 44px; }
+.marca-logo[alt="Tanqueray"]     { height: 44px; }
+.marca-logo[alt="Del Valle"]     { height: 44px; }
+.marca-logo[alt="Budweiser"]     { height: 22px; max-width: 140px; }
+.marca-logo[alt="Absolut"]       { height: 22px; }
+.marca-logo[alt="Johnnie Walker"]{ height: 22px; max-width: 130px; }
+.marca-logo[alt="José Cuervo"]   { height: 36px; }
+.marca-logo[alt="Coca-Cola"]     { height: 32px; }
+.marca-logo[alt="Heineken"]      { height: 30px; }
 
 @keyframes marquee {
   0%   { transform: translateX(0); }
