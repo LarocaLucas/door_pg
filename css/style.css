@@ -25,6 +25,12 @@ body {
   background: var(--black);
   color: var(--white);
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 img { display: block; width: 100%; }
@@ -504,8 +510,9 @@ ul { list-style: none; }
 
 .agenda-cta {
   text-align: center; border-top: 1px solid var(--gray-dim);
-  padding-top: 2rem;
-  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  border-bottom: 1px solid var(--gray-dim);
+  padding: 1.5rem 0;
+  display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
 }
 .agenda-cta p { font-size: 0.8rem; color: var(--gray); letter-spacing: 0.1em; }
 
@@ -583,12 +590,9 @@ ul { list-style: none; }
   padding: 4rem;
   display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
 }
-.footer-logo { width: 72px; margin-bottom: 0.5rem; }
+.footer-logo { width: 180px; margin-bottom: 0.5rem; }
 .footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.1em; }
-.footer-tagline {
-  font-size: 0.55rem; letter-spacing: 0.45em;
-  color: var(--gray); text-transform: uppercase; margin-bottom: 1rem;
-}
+
 .footer-ig {
   display: inline-flex; align-items: center; gap: 0.4rem;
   font-size: 0.6rem; letter-spacing: 0.2em;
@@ -653,6 +657,12 @@ ul { list-style: none; }
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVIDADE EXTRA ────────────────────────────── */
+* { max-width: 100%; }
+img, svg { max-width: 100%; height: auto; }
+.marcas-strip { overflow: hidden; }
+.marcas-track { will-change: transform; }
 
 /* ── MOBILE ──────────────────────────────────────────── */
 @media (max-width: 900px) {
