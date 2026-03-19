@@ -1,0 +1,120 @@
+/* ── GALERIA.CSS ─────────────────────────────────────────
+   Estilos específicos da página galeria.html
+   Complementa style.css sem duplicar variáveis
+─────────────────────────────────────────────────────── */
+
+/* Header da página */
+.gal-header {
+  padding: calc(var(--nav-h) + 4rem) 4rem 3rem;
+  border-bottom: 1px solid var(--gray-dim);
+}
+.gal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  letter-spacing: 0.05em; line-height: 1;
+  margin: 0.5rem 0;
+}
+.gal-sub {
+  font-size: 0.88rem; color: var(--gray);
+  line-height: 1.7; max-width: 400px;
+}
+
+/* Seletor de eventos */
+.gal-eventos {
+  display: flex; gap: 0; flex-wrap: wrap;
+  padding: 2rem 4rem;
+  border-bottom: 1px solid var(--gray-dim);
+  overflow-x: auto;
+}
+.evento-btn {
+  background: none;
+  border: none; border-right: 1px solid var(--gray-dim);
+  padding: 0.8rem 1.8rem;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gray);
+  transition: all 0.3s; white-space: nowrap;
+}
+.evento-btn:first-child { border-left: 1px solid var(--gray-dim); }
+.evento-btn:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+.evento-btn.active { color: var(--black); background: var(--white); }
+
+/* Grid de fotos */
+.gal-main {
+  padding: 3rem 4rem 6rem;
+  min-height: 60vh;
+}
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 6px;
+}
+
+/* Card de foto */
+.foto-card {
+  position: relative; overflow: hidden;
+  aspect-ratio: 3/2; background: var(--gray-dim);
+  group: true;
+}
+.foto-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+.foto-card:hover img { transform: scale(1.05); }
+
+/* Overlay com botão download */
+.foto-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.foto-card:hover .foto-overlay { opacity: 1; }
+
+.foto-download {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--white); color: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 0.6rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 0.7rem 1.4rem;
+  border: none; cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.foto-download:hover { background: transparent; color: var(--white); border: 1px solid var(--white); }
+.foto-download svg { flex-shrink: 0; }
+
+/* Número da foto */
+.foto-num {
+  position: absolute; top: 0.7rem; left: 0.7rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  pointer-events: none;
+}
+
+/* Estado vazio */
+.gal-empty {
+  text-align: center; color: var(--gray);
+  font-size: 0.9rem; padding: 4rem;
+  letter-spacing: 0.1em;
+}
+
+/* Loading state */
+.gal-loading {
+  display: flex; align-items: center; justify-content: center;
+  height: 300px; color: var(--gray);
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .gal-header { padding: calc(var(--nav-h) + 2rem) 1.5rem 2rem; }
+  .gal-eventos { padding: 1.5rem; }
+  .gal-main { padding: 2rem 1.5rem 4rem; }
+  .gal-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 4px; }
+}

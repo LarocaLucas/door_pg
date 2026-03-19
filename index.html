@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Door PG — Unlock the Dark. A nova fase da noite em Ponta Grossa.">
+  <meta property="og:title" content="Door PG — Unlock the Dark">
+  <meta property="og:description" content="Some doors close, others open. Unlock the Dark.">
+  <meta property="og:image" content="assets/images/hero/01.jpeg">
+  <meta property="og:url" content="https://larocalucas.github.io/door_pg/">
+  <title>Door PG — Unlock the Dark</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- COUNTDOWN -->
+  <div id="countdownScreen">
+    <div class="cd-grain"></div>
+    <div class="cd-lines"></div>
+    <div class="cd-content">
+      <div class="cd-keyhole">
+        <svg viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="24" r="18" stroke="white" stroke-width="1.5"/>
+          <path d="M18 42 L14 80 L46 80 L42 42" stroke="white" stroke-width="1.5" fill="none"/>
+          <circle cx="30" cy="24" r="5" fill="white"/>
+        </svg>
+      </div>
+      <p class="cd-tagline">SOME DOORS CLOSE,</p>
+      <p class="cd-tagline cd-tagline--space">OTHERS OPEN</p>
+      <h1 class="cd-title">UNLOCK<br><em>THE DARK</em></h1>
+      <p class="cd-sub">A nova fase começa em</p>
+      <div class="cd-timer">
+        <div class="cd-unit"><span class="cd-num" id="cdDays">00</span><span class="cd-label">dias</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cdHours">00</span><span class="cd-label">horas</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cdMinutes">00</span><span class="cd-label">min</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cdSeconds">00</span><span class="cd-label">seg</span></div>
+      </div>
+      <p class="cd-date">01 · 04 · 2026</p>
+    </div>
+    <button class="cd-skip" id="cdSkip">Entrar no site →</button>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/images/logos/logo.png" alt="Door PG" class="nav-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="nav-logo-text" style="display:none">DOOR</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#conheca" class="nav-link">A Door</a></li>
+      <li><a href="#historico" class="nav-link">Road</a></li>
+      <li><a href="#agenda" class="nav-link">Agenda</a></li>
+      <li><a href="#reservas" class="nav-link">Reservas</a></li>
+      <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+      <li><a href="#ingressos" class="nav-link nav-link--cta" id="ingressosBtn">Ingressos</a></li>
+      <li>
+        <a href="https://instagram.com/door_pg" target="_blank" rel="noopener" class="nav-ig" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+      </li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-slides" id="heroSlides">
+      <!-- JS popula dinamicamente de assets/images/hero/ (01 a 13) -->
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-unlock">UNLOCK THE DARK</p>
+      <img src="assets/images/logos/logo.png" alt="Door PG" class="hero-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <h1 class="hero-logo-fallback" style="display:none">DOOR</h1>
+      <p class="hero-desc">A noite tem uma nova porta.<br>Entre, se tiver coragem.</p>
+      <div class="hero-ctas">
+        <a href="#reservas" class="btn-primary">Fazer Reserva</a>
+        <a href="#agenda" class="btn-outline">Ver Agenda</a>
+      </div>
+    </div>
+    <div class="hero-dots" id="heroDots"></div>
+    <a href="https://instagram.com/door_pg" target="_blank" rel="noopener" class="hero-ig-badge">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      @door_pg
+    </a>
+  </section>
+
+  <!-- CONHEÇA A DOOR -->
+  <section id="conheca">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div>
+        <p class="section-label">Conheça</p>
+        <h2 class="section-title">A <em>DOOR</em></h2>
+      </div>
+    </div>
+    <div class="conheca-grid" id="conhecaGrid">
+      <div class="c-slot c-slot--lg"><img src="" alt="Door PG"><div class="c-overlay"></div></div>
+      <div class="c-slot"><img src="" alt="Door PG"><div class="c-overlay"></div></div>
+      <div class="c-slot"><img src="" alt="Door PG"><div class="c-overlay"></div></div>
+      <div class="c-slot"><img src="" alt="Door PG"><div class="c-overlay"></div></div>
+      <div class="c-slot"><img src="" alt="Door PG"><div class="c-overlay"></div></div>
+      <div class="c-slot"><img src="" alt="Door PG"><div class="c-overlay"></div></div>
+    </div>
+    <div class="conheca-footer">
+      <a href="galeria.html" class="btn-outline">Ver galeria completa →</a>
+      <a href="https://instagram.com/door_pg" target="_blank" rel="noopener" class="conheca-ig">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        Nos siga no Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- FAIXA DE MARCAS -->
+  <div class="marcas-strip" aria-label="Marcas parceiras">
+    <div class="marcas-track">
+      <span class="marca">Coca-Cola</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Del Valle</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">ABSOLUT</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Johnnie Walker</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">BALENA</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Red Bull</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Heineken</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Budweiser</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Tanqueray</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">José Cuervo</span>
+      <span class="marca-sep">✦</span>
+      <!-- duplicado para loop infinito -->
+      <span class="marca">Coca-Cola</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Del Valle</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">ABSOLUT</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Johnnie Walker</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">BALENA</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Red Bull</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Heineken</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Budweiser</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">Tanqueray</span>
+      <span class="marca-sep">✦</span>
+      <span class="marca">José Cuervo</span>
+      <span class="marca-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- HISTÓRICO / ROAD -->
+  <section id="historico">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <p class="section-label">Trajetória</p>
+        <h2 class="section-title">NOSSA <em>ROAD</em></h2>
+      </div>
+    </div>
+    <div class="road-timeline">
+      <div class="road-item reveal">
+        <div class="road-left">
+          <span class="road-year">2024</span>
+          <div class="road-dot"></div>
+        </div>
+        <div class="road-right">
+          <h3>O Começo</h3>
+          <p>A Door nasce com uma proposta diferente para a noite de Ponta Grossa — um espaço onde música, experiência e os detalhes importam. Cada fim de semana, uma nova história.</p>
+        </div>
+      </div>
+      <div class="road-item reveal">
+        <div class="road-left">
+          <span class="road-year">18·07·2025</span>
+          <div class="road-dot road-dot--white"></div>
+        </div>
+        <div class="road-right">
+          <h3>Inauguração</h3>
+          <p>A primeira Door abre suas portas. Uma noite histórica que marcou o início de uma nova era para o entretenimento da região. O público reconheceu — e a fila não parou mais.</p>
+        </div>
+      </div>
+      <div class="road-item reveal">
+        <div class="road-left">
+          <span class="road-year">19–20·09·2025</span>
+          <div class="road-dot"></div>
+        </div>
+        <div class="road-right">
+          <h3>Uma Porta se Fecha</h3>
+          <p>Como em toda grande história, imprevistos fazem parte do caminho. O espaço original encerra seu ciclo — mas não a ideia, não a energia, não o que a Door representa.</p>
+          <p class="road-quote">"Some doors close, others open."</p>
+        </div>
+      </div>
+      <div class="road-item reveal">
+        <div class="road-left">
+          <span class="road-year">01·04·2026</span>
+          <div class="road-dot road-dot--pulse"></div>
+        </div>
+        <div class="road-right">
+          <h3>Unlock the Dark ↗</h3>
+          <p>A nova fase começa. Novo endereço, mesma essência — elevada. A Door volta mais forte, mais sofisticada, pronta para reescrever a noite de Ponta Grossa.</p>
+          <a href="#contato" class="btn-primary road-btn">Em breve →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section id="agenda">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div>
+        <p class="section-label">Programação</p>
+        <h2 class="section-title">AGENDA <em>DA SEMANA</em></h2>
+      </div>
+    </div>
+    <div class="agenda-grid" id="agendaGrid">
+      <!-- JS popula com as imagens de assets/images/agenda/ -->
+    </div>
+    <div class="agenda-cta">
+      <p>Não perca nenhuma noite.</p>
+      <a href="https://wa.me/5542991081086?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20para%20a%20próxima%20noite%20na%20Door." class="btn-primary" target="_blank" rel="noopener">Garantir Meu Lugar</a>
+    </div>
+  </section>
+
+  <!-- RESERVAS -->
+  <section id="reservas">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div>
+        <p class="section-label">Exclusividade</p>
+        <h2 class="section-title">FAÇA SUA <em>RESERVA</em></h2>
+      </div>
+    </div>
+    <p class="reservas-sub">Garanta sua experiência. Escolha o espaço ideal para a sua noite.</p>
+    <div class="reservas-grid">
+      <a href="https://wa.me/5542991081086?text=Olá!%20Gostaria%20de%20reservar%20um%20*Camarote*%20na%20Door." class="reserva-card reveal" target="_blank" rel="noopener">
+        <div class="reserva-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M3 7h18M3 7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M3 7V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <h3>Camarote</h3>
+        <p>O melhor ângulo da noite. Ambiente exclusivo com serviço diferenciado e vista privilegiada para a pista.</p>
+        <span class="reserva-link">Reservar agora →</span>
+      </a>
+      <a href="https://wa.me/5542991081086?text=Olá!%20Gostaria%20de%20reservar%20um%20*Bistrô*%20na%20Door." class="reserva-card reserva-card--destaque reveal" target="_blank" rel="noopener">
+        <div class="reserva-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
+        </div>
+        <h3>Bistrô</h3>
+        <p>Gastronomia e noite em um só lugar. O espaço perfeito para jantar com estilo antes de curtir a pista.</p>
+        <span class="reserva-link">Reservar agora →</span>
+      </a>
+      <a href="https://wa.me/5542991081086?text=Olá!%20Gostaria%20de%20informações%20sobre%20*Aniversariante*%20na%20Door!" class="reserva-card reveal" target="_blank" rel="noopener">
+        <div class="reserva-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Aniversariante</h3>
+        <p>Celebre do jeito que você merece. Pacotes especiais para tornar seu aniversário uma noite inesquecível.</p>
+        <span class="reserva-link">Reservar agora →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- LOCALIZAÇÃO -->
+  <section id="local">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div>
+        <p class="section-label">Onde estamos</p>
+        <h2 class="section-title">NOSSA <em>LOCALIZAÇÃO</em></h2>
+      </div>
+    </div>
+    <div class="local-wrap">
+      <div class="local-info reveal">
+        <div class="local-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><strong>Endereço</strong><span>A ser confirmado — Ponta Grossa, PR</span></div>
+        </div>
+        <div class="local-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div><strong>Horário</strong><span>Sex e Sáb a partir das 23h · Dom a partir das 22h</span></div>
+        </div>
+        <div class="local-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div><strong>Contato</strong><span>+55 (42) 99108-1086</span></div>
+        </div>
+        <a href="https://maps.google.com/?q=Ponta+Grossa+PR" target="_blank" rel="noopener" class="btn-primary local-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Ver no Google Maps
+        </a>
+      </div>
+      <div class="local-art reveal">
+        <svg viewBox="0 0 180 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="160" height="260" rx="2" stroke="white" stroke-width="1.5"/>
+          <rect x="20" y="20" width="140" height="240" rx="1" stroke="white" stroke-width="0.5" opacity="0.2"/>
+          <circle cx="140" cy="140" r="7" stroke="white" stroke-width="1.5"/>
+          <circle cx="140" cy="140" r="3" fill="white"/>
+          <line x1="10" y1="80" x2="170" y2="80" stroke="white" stroke-width="0.5" opacity="0.15"/>
+          <line x1="10" y1="200" x2="170" y2="200" stroke="white" stroke-width="0.5" opacity="0.15"/>
+          <text x="90" y="250" text-anchor="middle" font-family="sans-serif" font-size="8" letter-spacing="6" fill="white" opacity="0.4">DOOR</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div>
+        <p class="section-label">Fale conosco</p>
+        <h2 class="section-title">ENTRE EM <em>CONTATO</em></h2>
+      </div>
+    </div>
+    <div class="contato-grid">
+      <a href="https://wa.me/5542991081086" target="_blank" rel="noopener" class="contato-card reveal">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        <strong>WhatsApp</strong>
+        <span>+55 (42) 99108-1086</span>
+      </a>
+      <a href="https://instagram.com/door_pg" target="_blank" rel="noopener" class="contato-card reveal">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        <strong>Instagram</strong>
+        <span>@door_pg</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/images/logos/logo.png" alt="Door PG" class="footer-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="footer-logo-text" style="display:none">DOOR</span>
+        <p class="footer-tagline">Unlock the Dark</p>
+        <a href="https://instagram.com/door_pg" target="_blank" rel="noopener" class="footer-ig">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          @door_pg
+        </a>
+      </div>
+      <div class="footer-nav">
+        <strong>Navegação</strong>
+        <a href="#conheca">A Door</a>
+        <a href="#historico">Road</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#reservas">Reservas</a>
+        <a href="galeria.html">Galeria</a>
+      </div>
+      <div class="footer-nav">
+        <strong>Reservas</strong>
+        <a href="https://wa.me/5542991081086?text=Reserva%20Camarote" target="_blank" rel="noopener">Camarote</a>
+        <a href="https://wa.me/5542991081086?text=Reserva%20Bistro" target="_blank" rel="noopener">Bistrô</a>
+        <a href="https://wa.me/5542991081086?text=Reserva%20Aniversariante" target="_blank" rel="noopener">Aniversariante</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Door PG — Todos os direitos reservados</p>
+      <p>Desenvolvido por <strong>Lucas Laroca</strong></p>
+    </div>
+  </footer>
+
+  <!-- MODAL INGRESSOS -->
+  <div class="modal-overlay" id="modalIngressos" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+      <div class="modal-keyhole">
+        <svg viewBox="0 0 40 60" fill="none">
+          <circle cx="20" cy="16" r="12" stroke="white" stroke-width="1.5"/>
+          <path d="M11 28 L9 52 L31 52 L29 28" stroke="white" stroke-width="1.5" fill="none"/>
+          <circle cx="20" cy="16" r="4" fill="white"/>
+        </svg>
+      </div>
+      <h2 class="modal-title" id="modalTitle">EM BREVE</h2>
+      <p class="modal-sub">A venda de ingressos será liberada em breve.<br>Fique de olho no nosso Instagram.</p>
+      <a href="https://instagram.com/door_pg" target="_blank" rel="noopener" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        @door_pg
+      </a>
+    </div>
+  </div>
+
+  <!-- âncora ingressos -->
+  <div id="ingressos" style="position:absolute;visibility:hidden;"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
