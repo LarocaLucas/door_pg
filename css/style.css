@@ -43,6 +43,8 @@ ul { list-style: none; }
   background: #000;
   z-index: 9999;
   display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  touch-action: none;
 }
 
 .cd-grain {
@@ -134,14 +136,15 @@ ul { list-style: none; }
 }
 
 .cd-skip {
-  position: absolute; bottom: 2rem; right: 2rem;
-  background: none; border: 1px solid var(--gray-dim);
-  color: var(--gray); cursor: pointer;
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  background: none; border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.5); cursor: pointer;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.6rem; letter-spacing: 0.25em;
+  font-size: 0.6rem; letter-spacing: 0.3em;
   text-transform: uppercase;
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.8rem;
   transition: all 0.3s;
+  white-space: nowrap;
 }
 .cd-skip:hover { border-color: var(--white); color: var(--white); }
 
@@ -392,7 +395,7 @@ ul { list-style: none; }
 .marcas-track {
   display: flex; align-items: center; gap: 2rem;
   white-space: nowrap;
-  animation: marquee 32s linear infinite;
+  animation: marquee 18s linear infinite;
   width: max-content;
 }
 .marca-logo {
@@ -590,7 +593,7 @@ ul { list-style: none; }
   padding: 4rem;
   display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
 }
-.footer-logo { width: 180px; margin-bottom: 0.5rem; }
+.footer-logo { width: 260px; height: auto; margin-bottom: 0.8rem; }
 .footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.1em; }
 
 .footer-ig {
@@ -695,6 +698,8 @@ img, svg { max-width: 100%; height: auto; }
   .reservas-grid { grid-template-columns: 1fr; }
   .local-wrap { grid-template-columns: 1fr; }
   .local-art { display: none; }
+  .local-wrap { overflow: visible; }
+  .section-title { font-size: 2rem; word-break: break-word; }
   .contato-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
   .footer-bottom { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
