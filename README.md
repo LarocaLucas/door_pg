@@ -134,4 +134,4 @@ Ver **`GUIA-MANUTENCAO.md`** para instruções detalhadas sobre:
 
 ---
 
-*Desenvolvido por [Lucas Laroca](https://larocalucas.github.io/djlaroca/)*
+*Desenvolvido por [Laroca.dev](https://laroca.dev)*
