@@ -7,25 +7,47 @@
 'use strict';
 
 /* ── 1. COUNTDOWN ──────────────────────────────────────
- * Conta regressiva até 01/04/2026 00:00:00
+ * Conta regressiva até 07/05/2026 às 20h (inauguração oficial)
  * Ao atingir zero, oculta a tela automaticamente
+ * O botão "pular" permanece disponível como alternativa
  ─────────────────────────────────────────────────────── */
 (function initCountdown() {
-  const screen   = document.getElementById('countdownScreen');
-  const skipBtn  = document.getElementById('cdSkip');
-  const target   = new Date('2026-04-16T20:00:00');
+  const screen  = document.getElementById('countdownScreen');
+  const skipBtn = document.getElementById('cdSkip');
+
+  // Data-alvo: inauguração oficial — 07/05/2026 às 20h
+  const TARGET = new Date('2026-05-07T20:00:00');
 
   function pad(n) { return String(n).padStart(2, '0'); }
+
+  // Evita executar hide mais de uma vez
+  let hidden = false;
+  function hideCountdown() {
+    if (hidden) return;
+    hidden = true;
+    if (screen) {
+      screen.style.transition = 'opacity 0.6s ease';
+      screen.style.opacity    = '0';
+      setTimeout(() => {
+        screen.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 600);
+    }
+  }
 
   function tick() {
     // Guard — só executa se os elementos existirem (não existe na galeria.html)
     const elDays = document.getElementById('cdDays');
     if (!elDays) return;
 
-    const now  = new Date();
-    const diff = target - now;
+    const diff = TARGET - Date.now();
 
+    // Se a data já passou, esconde imediatamente sem deixar o site travado
     if (diff <= 0) {
+      elDays.textContent                               = '00';
+      document.getElementById('cdHours').textContent   = '00';
+      document.getElementById('cdMinutes').textContent = '00';
+      document.getElementById('cdSeconds').textContent = '00';
       hideCountdown();
       return;
     }
@@ -35,36 +57,26 @@
     const minutes = Math.floor((diff % 3600000)  / 60000);
     const seconds = Math.floor((diff % 60000)    / 1000);
 
-    elDays.textContent                                   = pad(days);
+    elDays.textContent                               = pad(days);
     document.getElementById('cdHours').textContent   = pad(hours);
     document.getElementById('cdMinutes').textContent = pad(minutes);
     document.getElementById('cdSeconds').textContent = pad(seconds);
   }
 
-  tick();
-  setInterval(tick, 1000);
-
   // Travar scroll do body enquanto countdown está visível
-  if (screen && screen.style.display !== 'none') {
+  if (screen) {
     document.body.style.overflow = 'hidden';
   }
 
-  // Evita executar hide mais de uma vez
-  let hidden = false;
-  function hideCountdown() {
-    if (hidden) return;
-    hidden = true;
-    if (screen) {
-      screen.style.opacity = '0';
-      screen.style.transition = 'opacity 0.6s ease';
-      setTimeout(() => {
-        screen.style.display = 'none';
-        document.body.style.overflow = '';
-      }, 600);
-    }
-  }
+  // Executa imediatamente e depois a cada segundo
+  tick();
+  const intervalId = setInterval(() => {
+    tick();
+    // Limpa o interval após esconder para não continuar rodando
+    if (hidden) clearInterval(intervalId);
+  }, 1000);
 
-  // Botão "pular"
+  // Botão "pular" — sempre funcional como alternativa
   if (skipBtn) {
     skipBtn.addEventListener('click', hideCountdown);
   }
@@ -229,9 +241,9 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '16-04', label: 'Quinta-feira · 16/04' },
-    { file: '17-04', label: 'Sexta-feira · 17/04'  },
-    { file: '18-04', label: 'Sábado · 18/04'        },
+    { file: '07-05', label: 'Quinta-feira · 07/05' },
+    { file: '08-05', label: 'Sexta-feira · 08/05'  },
+    { file: '09-05', label: 'Sábado · 09/05'        },
   ];
 
   AGENDA.forEach(({ file, label }) => {
