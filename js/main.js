@@ -251,7 +251,7 @@
     card.className = 'agenda-card';
 
     const img = document.createElement('img');
-    img.src = `assets/images/agenda/${file}.jpeg`;
+    img.src = `https://fotos.doorpg.com.br/agenda/${file}.jpeg`;
     img.alt = label;
     img.loading = 'lazy';
 

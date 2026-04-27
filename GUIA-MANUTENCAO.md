@@ -27,19 +27,23 @@ Cada arte deve ser nomeada com a data no formato `dd-mm.jpeg`
 
 ### 1.2 Onde colocar as imagens
 
-Pasta: `assets/images/agenda/`
+As artes da agenda não ficam no repositório. Elas devem ser enviadas para o **Cloudflare R2** (bucket `door-fotos`).
 
+1. Acesse o Painel da Cloudflare → **Armazenamento de objetos do R2**
+2. Clique no bucket `door-fotos`
+3. Entre na pasta `agenda` (se não existir, crie-a)
+4. Faça o upload das novas artes `dd-mm.jpeg` para dentro da pasta `agenda`
+
+Estrutura esperada no R2:
 ```
-Site Door/
-└── assets/
-    └── images/
-        └── agenda/
-            ├── 04-04.jpeg   ← nova arte
-            ├── 05-04.jpeg   ← nova arte
-            └── ...
+door-fotos (bucket)/
+├── agenda/
+│   ├── 04-04.jpeg   ← nova arte
+│   └── 05-04.jpeg   ← nova arte
+└── ...
 ```
 
-> Pode deixar artes antigas na pasta — elas não aparecem no site a menos que estejam registradas no código.
+> Pode deixar artes antigas no R2 se quiser, elas não aparecem no site a menos que estejam registradas no código.
 
 ---
 
@@ -236,7 +240,7 @@ Use esta lista toda semana antes do fim de semana:
 ```
 [ ] 1. Receber artes da agenda do designer
 [ ] 2. Renomear arquivos para dd-mm.jpeg
-[ ] 3. Copiar para assets/images/agenda/
+[ ] 3. Fazer upload para a pasta `agenda/` no bucket `door-fotos` (Cloudflare R2)
 [ ] 4. Abrir js/main.js e atualizar array AGENDA
 [ ] 5. git add . && git commit -m "agenda: semana de DD/MM" && git push
 [ ] 6. Conferir no site se as artes apareceram corretamente
@@ -261,7 +265,7 @@ Após cada evento:
 
 **As artes não aparecem na agenda:**
 - Confirme que o nome do arquivo é exatamente `dd-mm.jpeg` (extensão `.jpeg`)
-- Confirme que o arquivo está em `assets/images/agenda/`
+- Confirme que o arquivo foi enviado para a pasta `agenda/` no R2
 - Confirme que a entrada no array `AGENDA` do `main.js` tem o `file` correto (sem extensão)
 
 **As fotos da galeria não aparecem:**
