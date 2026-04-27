@@ -423,8 +423,7 @@ ul { list-style: none; }
   animation: marquee 18s linear infinite;
 }
 @media (max-width: 600px) {
-  .marcas-track { animation: marquee 10s linear infinite; }
-  width: max-content;
+  .marcas-track { animation: marquee 10s linear infinite; width: max-content; }
 }
 .marca-logo {
   height: 28px;
