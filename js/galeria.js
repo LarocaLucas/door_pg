@@ -151,7 +151,10 @@ function criarFotoCard(src, num, folder) {
     dlLink.style.opacity = '0.7';
 
     try {
-      const response = await fetch(src);
+      // Usamos um timestamp (?v=...) para ignorar o cache da Cloudflare.
+      // Como o cache antigo não tinha os headers de CORS, o fetch falharia.
+      // O cache-buster força uma resposta nova (com CORS) diretamente do R2.
+      const response = await fetch(`${src}?v=${new Date().getTime()}`);
       if (!response.ok) throw new Error('Erro ao buscar imagem');
       
       const blob = await response.blob();
