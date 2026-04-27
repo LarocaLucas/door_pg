@@ -254,6 +254,12 @@
     img.src = `https://fotos.doorpg.com.br/agenda/${file}.jpeg`;
     img.alt = label;
     img.loading = 'lazy';
+    img.style.cursor = 'pointer'; // Indica que é clicável
+    
+    // Abre o lightbox ao clicar na imagem
+    img.addEventListener('click', () => {
+      if (window.openLightbox) window.openLightbox(img.src);
+    });
 
     const dateTag = document.createElement('div');
     dateTag.className = 'agenda-date';
@@ -330,4 +336,43 @@
   }, { threshold: 0.12 });
 
   elements.forEach(el => observer.observe(el));
+})();
+
+
+/* ── 8. LIGHTBOX DE IMAGENS ─────────────────────────────
+ * Abre imagens em tela cheia ao serem clicadas
+ ─────────────────────────────────────────────────────── */
+(function initLightbox() {
+  const overlay = document.getElementById('imageLightbox');
+  const imgEl   = document.getElementById('lightboxImg');
+  const closeBtn= document.getElementById('lightboxClose');
+
+  if (!overlay || !imgEl) return;
+
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Função global para abrir
+  window.openLightbox = function(src) {
+    imgEl.src = src;
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Fecha ao clicar no X
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+
+  // Fecha ao clicar fora da imagem
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeLightbox();
+  });
+
+  // Fecha com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+  });
 })();
