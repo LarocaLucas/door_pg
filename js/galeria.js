@@ -125,11 +125,9 @@ function criarFotoCard(src, num, folder) {
   const overlay = document.createElement('div');
   overlay.className = 'foto-overlay';
 
-  // Link de download — força download com qualidade original
-  const dlLink = document.createElement('a');
+  // Botão de download — usa fetch para forçar download do R2 (Cross-Origin)
+  const dlLink = document.createElement('button');
   dlLink.className = 'foto-download';
-  dlLink.href      = src;
-  dlLink.download  = `door-pg_${folder}_${String(num).padStart(2,'0')}.jpg`;
   dlLink.setAttribute('aria-label', `Baixar foto ${num}`);
   dlLink.innerHTML = `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
@@ -137,8 +135,48 @@ function criarFotoCard(src, num, folder) {
       <polyline points="7 10 12 15 17 10"/>
       <line x1="12" y1="15" x2="12" y2="3"/>
     </svg>
-    Baixar
+    <span>Baixar</span>
   `;
+
+  dlLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const span = dlLink.querySelector('span');
+    const originalText = span.textContent;
+    
+    // Feedback visual de carregamento
+    span.textContent = '...';
+    dlLink.style.pointerEvents = 'none';
+    dlLink.style.opacity = '0.7';
+
+    try {
+      const response = await fetch(src);
+      if (!response.ok) throw new Error('Erro ao buscar imagem');
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      const tempLink = document.createElement('a');
+      tempLink.style.display = 'none';
+      tempLink.href = url;
+      tempLink.download = `door-pg_${folder}_${String(num).padStart(2,'0')}.jpg`;
+      
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      
+      // Limpeza
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(tempLink);
+    } catch (error) {
+      console.error('Erro no download:', error);
+      alert('Não foi possível baixar a imagem. Tente novamente mais tarde.');
+    } finally {
+      span.textContent = originalText;
+      dlLink.style.pointerEvents = 'auto';
+      dlLink.style.opacity = '1';
+    }
+  });
 
   overlay.appendChild(dlLink);
   card.appendChild(numEl);
