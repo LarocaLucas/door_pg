@@ -105,7 +105,7 @@ Após cada evento, as fotos ficam disponíveis na página `galeria.html` para os
 
 ### 2.1 Padrão de nome da pasta
 
-Cada evento tem sua própria pasta dentro de `assets/images/galeria/`  
+Cada evento tem sua própria pasta que será enviada para o **Cloudflare R2** (bucket `door-fotos`).  
 O nome da pasta segue o formato: `DD-MM-AAAA`
 
 **Exemplos:**
@@ -136,22 +136,21 @@ As fotos dentro da pasta devem ser numeradas sequencialmente com dois dígitos:
 
 ### 2.3 Onde colocar as pastas
 
+As pastas não são mais salvas no repositório do site (para não deixar o repositório pesado). Elas devem ser enviadas (upload) para o **Cloudflare R2**:
+
+1. Acesse o [Painel da Cloudflare](https://dash.cloudflare.com)
+2. Vá em **Armazenamento de objetos do R2** (R2 Object Storage) → clique no bucket `door-fotos`
+3. Arraste e solte a pasta recém-criada `DD-MM-AAAA` (contendo as fotos) para a raiz do bucket.
+
+Estrutura final no R2:
 ```
-Site Door/
-└── assets/
-    └── images/
-        └── galeria/
-            ├── 04-04-2026/    ← já existe
-            │   ├── 01.jpg
-            │   ├── 02.jpg
-            │   └── ...
-            ├── 05-04-2026/    ← já existe
-            │   ├── 01.jpg
-            │   └── ...
-            └── 11-04-2026/    ← NOVA PASTA
-                ├── 01.jpg
-                ├── 02.jpg
-                └── ...
+door-fotos (bucket)/
+├── 04-04-2026/
+│   ├── 01.jpg
+│   └── 02.jpg
+└── 11-04-2026/    ← NOVA PASTA
+    ├── 01.jpg
+    └── 02.jpg
 ```
 
 ---
@@ -178,8 +177,7 @@ const EVENTOS = [
 ];
 ```
 
-> O campo `total` deve ser o número exato de fotos na pasta.  
-> Para contar: `ls assets/images/galeria/11-04-2026/ | wc -l`
+> O campo `total` deve ser o número exato de fotos na pasta enviada para o R2.
 
 ---
 
@@ -249,9 +247,9 @@ Após cada evento:
 ```
 [ ] 1. Receber fotos do fotógrafo
 [ ] 2. Renomear para 01.jpg, 02.jpg, 03.jpg...
-[ ] 3. Criar pasta assets/images/galeria/DD-MM-AAAA/
-[ ] 4. Copiar fotos para a pasta
-[ ] 5. Contar total de fotos
+[ ] 3. Criar pasta DD-MM-AAAA/ localmente e copiar fotos para ela
+[ ] 4. Fazer upload da pasta DD-MM-AAAA/ inteira para o bucket `door-fotos` no Cloudflare R2
+[ ] 5. Contar total de fotos enviadas
 [ ] 6. Abrir js/galeria.js e adicionar novo evento no array EVENTOS
 [ ] 7. git add . && git commit -m "galeria: evento DD/MM" && git push
 [ ] 8. Conferir no site se as fotos aparecem e o download funciona
@@ -267,7 +265,7 @@ Após cada evento:
 - Confirme que a entrada no array `AGENDA` do `main.js` tem o `file` correto (sem extensão)
 
 **As fotos da galeria não aparecem:**
-- Confirme que as fotos estão em `assets/images/galeria/DD-MM-AAAA/`
+- Confirme que a pasta de fotos foi enviada para o bucket R2 (`door-fotos`)
 - Confirme que os arquivos se chamam `01.jpg`, `02.jpg` (com zero à esquerda, extensão `.jpg`)
 - Confirme que o `total` no array `EVENTOS` bate com o número real de fotos
 

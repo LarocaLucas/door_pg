@@ -79,7 +79,7 @@ function renderFotos(folder) {
 
   // Cria cards para cada foto
   for (let i = 1; i <= evento.total; i++) {
-    const src  = `assets/images/galeria/${folder}/${String(i).padStart(2,"0")}.jpg`;
+    const src  = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2,"0")}.jpg`;
     const card = criarFotoCard(src, i, folder);
     grid.appendChild(card);
   }
