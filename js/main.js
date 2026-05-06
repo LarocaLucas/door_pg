@@ -251,7 +251,8 @@
     card.className = 'agenda-card';
 
     const img = document.createElement('img');
-    img.src = `https://fotos.doorpg.com.br/agenda/${file}.jpeg`;
+    // Adicionado ?v=2 para quebrar o cache de imagens atualizadas com o mesmo nome
+    img.src = `https://fotos.doorpg.com.br/agenda/${file}.jpeg?v=2`;
     img.alt = label;
     img.loading = 'lazy';
     img.style.cursor = 'pointer'; // Indica que é clicável
