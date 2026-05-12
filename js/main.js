@@ -12,7 +12,7 @@
  * O botão "pular" permanece disponível como alternativa
  ─────────────────────────────────────────────────────── */
 (function initCountdown() {
-  const screen  = document.getElementById('countdownScreen');
+  const screen = document.getElementById('countdownScreen');
   const skipBtn = document.getElementById('cdSkip');
 
   // Data-alvo: inauguração oficial — 07/05/2026 às 20h
@@ -27,7 +27,7 @@
     hidden = true;
     if (screen) {
       screen.style.transition = 'opacity 0.6s ease';
-      screen.style.opacity    = '0';
+      screen.style.opacity = '0';
       setTimeout(() => {
         screen.style.display = 'none';
         document.body.style.overflow = '';
@@ -44,21 +44,21 @@
 
     // Se a data já passou, esconde imediatamente sem deixar o site travado
     if (diff <= 0) {
-      elDays.textContent                               = '00';
-      document.getElementById('cdHours').textContent   = '00';
+      elDays.textContent = '00';
+      document.getElementById('cdHours').textContent = '00';
       document.getElementById('cdMinutes').textContent = '00';
       document.getElementById('cdSeconds').textContent = '00';
       hideCountdown();
       return;
     }
 
-    const days    = Math.floor(diff / 86400000);
-    const hours   = Math.floor((diff % 86400000) / 3600000);
-    const minutes = Math.floor((diff % 3600000)  / 60000);
-    const seconds = Math.floor((diff % 60000)    / 1000);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
 
-    elDays.textContent                               = pad(days);
-    document.getElementById('cdHours').textContent   = pad(hours);
+    elDays.textContent = pad(days);
+    document.getElementById('cdHours').textContent = pad(hours);
     document.getElementById('cdMinutes').textContent = pad(minutes);
     document.getElementById('cdSeconds').textContent = pad(seconds);
   }
@@ -88,9 +88,9 @@
  * Controla menu mobile
  ─────────────────────────────────────────────────────── */
 (function initNavbar() {
-  const navbar    = document.getElementById('navbar');
-  const toggle    = document.getElementById('navToggle');
-  const navLinks  = document.getElementById('navLinks');
+  const navbar = document.getElementById('navbar');
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
 
   // Scroll → fundo escuro
   window.addEventListener('scroll', () => {
@@ -122,20 +122,20 @@
  ─────────────────────────────────────────────────────── */
 (function initHeroSlideshow() {
   const container = document.getElementById('heroSlides');
-  const dotsEl    = document.getElementById('heroDots');
+  const dotsEl = document.getElementById('heroDots');
   if (!container) return;
 
-  const TOTAL     = 13;   // total de fotos na pasta hero
-  const INTERVAL  = 4000; // ms entre slides
-  let   current   = 0;
-  let   timer;
+  const TOTAL = 13;   // total de fotos na pasta hero
+  const INTERVAL = 4000; // ms entre slides
+  let current = 0;
+  let timer;
 
   // Gerar slides
   const slides = [];
   for (let i = 1; i <= TOTAL; i++) {
     const div = document.createElement('div');
     div.className = 'hero-slide' + (i === 1 ? ' active' : '');
-    div.style.backgroundImage = `url('assets/images/hero/${String(i).padStart(2,'0')}.jpg')`;
+    div.style.backgroundImage = `url('assets/images/hero/${String(i).padStart(2, '0')}.jpg')`;
     container.appendChild(div);
     slides.push(div);
   }
@@ -179,10 +179,10 @@
   const grid = document.getElementById('conhecaGrid');
   if (!grid) return;
 
-  const TOTAL    = 18;
-  const SLOTS    = 6;
+  const TOTAL = 18;
+  const SLOTS = 6;
   const INTERVAL = 5000;
-  let   offset   = 0;
+  let offset = 0;
 
   // Pré-carregar caminhos
   const fotos = Array.from({ length: TOTAL }, (_, i) =>
@@ -226,7 +226,6 @@
 
 
 /* ── 5. AGENDA ─────────────────────────────────────────
- * Lê as imagens de assets/images/agenda/
  * Nome do arquivo = "dd-mm.jpeg" → extrai a data
  * Mapeia dia da semana para exibir no card
  ─────────────────────────────────────────────────────── */
@@ -241,9 +240,8 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '07-05', label: 'Quinta-feira · 07/05' },
-    { file: '08-05', label: 'Sexta-feira · 08/05'  },
-    { file: '09-05', label: 'Sábado · 09/05'        },
+    { file: '15-05', label: 'Sexta-feira · 15/05' },
+    { file: '16-05', label: 'Sábado · 16/05' },
   ];
 
   AGENDA.forEach(({ file, label }) => {
@@ -256,7 +254,7 @@
     img.alt = label;
     img.loading = 'lazy';
     img.style.cursor = 'pointer'; // Indica que é clicável
-    
+
     // Abre o lightbox ao clicar na imagem
     img.addEventListener('click', () => {
       if (window.openLightbox) window.openLightbox(img.src);
@@ -278,9 +276,9 @@
  * Fecha ao clicar no X ou fora do modal
  ─────────────────────────────────────────────────────── */
 (function initModal() {
-  const modal      = document.getElementById('modalIngressos');
-  const closeBtn   = document.getElementById('modalClose');
-  const openBtn    = document.getElementById('ingressosBtn');
+  const modal = document.getElementById('modalIngressos');
+  const closeBtn = document.getElementById('modalClose');
+  const openBtn = document.getElementById('ingressosBtn');
 
   if (!modal) return;
 
@@ -345,8 +343,8 @@
  ─────────────────────────────────────────────────────── */
 (function initLightbox() {
   const overlay = document.getElementById('imageLightbox');
-  const imgEl   = document.getElementById('lightboxImg');
-  const closeBtn= document.getElementById('lightboxClose');
+  const imgEl = document.getElementById('lightboxImg');
+  const closeBtn = document.getElementById('lightboxClose');
 
   if (!overlay || !imgEl) return;
 
@@ -357,7 +355,7 @@
   }
 
   // Função global para abrir
-  window.openLightbox = function(src) {
+  window.openLightbox = function (src) {
     imgEl.src = src;
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');

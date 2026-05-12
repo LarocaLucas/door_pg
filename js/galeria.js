@@ -18,8 +18,9 @@
  * @type {Array<{folder: string, label: string, total: number}>}
  */
 const EVENTOS = [
-  { folder: '04-04-2026', label: '04 · 04 · 2026', total: 5 },
-  { folder: '05-04-2026', label: '05 · 04 · 2026', total: 7 },
+  { folder: '07-05-2026', label: '07 · 05 · 2026', total: 107 },
+  { folder: '08-05-2026', label: '08 · 05 · 2026', total: 0 },
+  { folder: '09-05-2026', label: '09 · 05 · 2026', total: 0 },
   // Adicione novos eventos aqui ↓
 ];
 
@@ -62,7 +63,7 @@ function renderEventos() {
 
 /* ── Renderiza fotos do evento ────────────────────── */
 function renderFotos(folder) {
-  const grid  = document.getElementById('galGrid');
+  const grid = document.getElementById('galGrid');
   const empty = document.getElementById('galEmpty');
   if (!grid) return;
 
@@ -79,7 +80,7 @@ function renderFotos(folder) {
 
   // Cria cards para cada foto
   for (let i = 1; i <= evento.total; i++) {
-    const src  = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2,"0")}.jpg`;
+    const src = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg`;
     const card = criarFotoCard(src, i, folder);
     grid.appendChild(card);
   }
@@ -106,8 +107,8 @@ function criarFotoCard(src, num, folder) {
 
   // Imagem
   const img = document.createElement('img');
-  img.src     = src;
-  img.alt     = `Foto ${num} — Door PG ${folder}`;
+  img.src = src;
+  img.alt = `Foto ${num} — Door PG ${folder}`;
   img.loading = 'lazy'; // carregamento lazy para performance
 
   // Trata erro — mostra placeholder cinza em vez de esconder
@@ -117,7 +118,7 @@ function criarFotoCard(src, num, folder) {
     card.style.minHeight = '200px';
     const msg = document.createElement('span');
     msg.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#444;font-size:0.7rem;letter-spacing:0.2em';
-    msg.textContent = `FOTO ${String(num).padStart(2,'0')}`;
+    msg.textContent = `FOTO ${String(num).padStart(2, '0')}`;
     card.appendChild(msg);
   });
 
@@ -144,7 +145,7 @@ function criarFotoCard(src, num, folder) {
 
     const span = dlLink.querySelector('span');
     const originalText = span.textContent;
-    
+
     // Feedback visual de carregamento
     span.textContent = '...';
     dlLink.style.pointerEvents = 'none';
@@ -156,18 +157,18 @@ function criarFotoCard(src, num, folder) {
       // O cache-buster força uma resposta nova (com CORS) diretamente do R2.
       const response = await fetch(`${src}?v=${new Date().getTime()}`);
       if (!response.ok) throw new Error('Erro ao buscar imagem');
-      
+
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
-      
+
       const tempLink = document.createElement('a');
       tempLink.style.display = 'none';
       tempLink.href = url;
-      tempLink.download = `door-pg_${folder}_${String(num).padStart(2,'0')}.jpg`;
-      
+      tempLink.download = `door-pg_${folder}_${String(num).padStart(2, '0')}.jpg`;
+
       document.body.appendChild(tempLink);
       tempLink.click();
-      
+
       // Limpeza
       window.URL.revokeObjectURL(url);
       document.body.removeChild(tempLink);
