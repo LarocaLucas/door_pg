@@ -1,86 +1,10 @@
-/**
+﻿/**
  * DOOR PG — main.js
  * Módulos: countdown, navbar, hero slideshow,
  *          conheça slideshow, agenda, modal, reveal
  */
 
 'use strict';
-
-/* ── 1. COUNTDOWN ──────────────────────────────────────
- * Conta regressiva até 07/05/2026 às 20h (inauguração oficial)
- * Ao atingir zero, oculta a tela automaticamente
- * O botão "pular" permanece disponível como alternativa
- ─────────────────────────────────────────────────────── */
-(function initCountdown() {
-  const screen = document.getElementById('countdownScreen');
-  const skipBtn = document.getElementById('cdSkip');
-
-  // Data-alvo: inauguração oficial — 07/05/2026 às 20h
-  const TARGET = new Date('2026-05-07T20:00:00');
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  // Evita executar hide mais de uma vez
-  let hidden = false;
-  function hideCountdown() {
-    if (hidden) return;
-    hidden = true;
-    if (screen) {
-      screen.style.transition = 'opacity 0.6s ease';
-      screen.style.opacity = '0';
-      setTimeout(() => {
-        screen.style.display = 'none';
-        document.body.style.overflow = '';
-      }, 600);
-    }
-  }
-
-  function tick() {
-    // Guard — só executa se os elementos existirem (não existe na galeria.html)
-    const elDays = document.getElementById('cdDays');
-    if (!elDays) return;
-
-    const diff = TARGET - Date.now();
-
-    // Se a data já passou, esconde imediatamente sem deixar o site travado
-    if (diff <= 0) {
-      elDays.textContent = '00';
-      document.getElementById('cdHours').textContent = '00';
-      document.getElementById('cdMinutes').textContent = '00';
-      document.getElementById('cdSeconds').textContent = '00';
-      hideCountdown();
-      return;
-    }
-
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const minutes = Math.floor((diff % 3600000) / 60000);
-    const seconds = Math.floor((diff % 60000) / 1000);
-
-    elDays.textContent = pad(days);
-    document.getElementById('cdHours').textContent = pad(hours);
-    document.getElementById('cdMinutes').textContent = pad(minutes);
-    document.getElementById('cdSeconds').textContent = pad(seconds);
-  }
-
-  // Travar scroll do body enquanto countdown está visível
-  if (screen) {
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Executa imediatamente e depois a cada segundo
-  tick();
-  const intervalId = setInterval(() => {
-    tick();
-    // Limpa o interval após esconder para não continuar rodando
-    if (hidden) clearInterval(intervalId);
-  }, 1000);
-
-  // Botão "pular" — sempre funcional como alternativa
-  if (skipBtn) {
-    skipBtn.addEventListener('click', hideCountdown);
-  }
-})();
 
 
 /* ── 2. NAVBAR ─────────────────────────────────────────

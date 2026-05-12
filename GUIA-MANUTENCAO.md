@@ -91,7 +91,7 @@ const AGENDA = [
 Depois de atualizar o arquivo `main.js` e colocar as imagens na pasta, rode no terminal:
 
 ```bash
-cd "/home/ubuntu/Documents/Site Door"
+cd "C:\Users\Laroca Dev\Documents\door_pg"
 git add .
 git commit -m "agenda: semana de DD/MM"
 git push
@@ -203,7 +203,7 @@ const EVENTOS = [
 ### 2.6 Salvar e publicar
 
 ```bash
-cd "/home/ubuntu/Documents/Site Door"
+cd "C:\Users\Laroca Dev\Documents\door_pg"
 git add .
 git commit -m "galeria: adiciona fotos do evento DD/MM"
 git push
@@ -213,27 +213,7 @@ git push
 
 ---
 
-## PARTE 3 — REMOVER O BOTÃO "PULAR" DO COUNTDOWN
-
-Antes do lançamento oficial (01/04/2026), o botão "Entrar no site →" deve ser removido para que visitantes não pulem o countdown.
-
-Abra `index.html` e localize:
-
-```html
-<button class="cd-skip" id="cdSkip">Entrar no site →</button>
-```
-
-Apague essa linha inteira e salve. Depois:
-
-```bash
-git add index.html
-git commit -m "feat: remove botão skip do countdown para lançamento"
-git push
-```
-
----
-
-## PARTE 4 — CHECKLIST SEMANAL COMPLETO
+## PARTE 3 — CHECKLIST SEMANAL COMPLETO
 
 Use esta lista toda semana antes do fim de semana:
 
