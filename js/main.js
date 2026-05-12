@@ -1,4 +1,4 @@
-﻿/**
+/**
  * DOOR PG — main.js
  * Módulos: countdown, navbar, hero slideshow,
  *          conheça slideshow, agenda, modal, reveal
@@ -276,6 +276,13 @@
     overlay.classList.remove('active');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    
+    // Limpa a imagem antiga após a animação de fade (evita piscar a foto velha na próxima abertura)
+    setTimeout(() => {
+      if (!overlay.classList.contains('active')) {
+        imgEl.src = '';
+      }
+    }, 300);
   }
 
   // Função global para abrir
