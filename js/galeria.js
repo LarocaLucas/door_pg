@@ -107,7 +107,9 @@ function criarFotoCard(src, num, folder) {
 
   // Imagem
   const img = document.createElement('img');
-  img.src = src;
+  // Usamos o proxy gratuito wsrv.nl para criar uma miniatura de 400px (aprox. 30KB)
+  // Isso evita o travamento catastrófico de carregar 50 arquivos de 20MB simultaneamente
+  img.src = `https://wsrv.nl/?url=${encodeURIComponent(src)}&w=400&q=80`;
   img.alt = `Foto ${num} — Door PG ${folder}`;
   img.loading = 'lazy'; // carregamento lazy para performance
 
@@ -125,6 +127,13 @@ function criarFotoCard(src, num, folder) {
   // Overlay com download
   const overlay = document.createElement('div');
   overlay.className = 'foto-overlay';
+  overlay.style.cursor = 'zoom-in';
+
+  // Abre o lightbox ao clicar no overlay (carrega a versão web HD, não a bruta de 20MB)
+  overlay.addEventListener('click', () => {
+    const hdUrl = `https://wsrv.nl/?url=${encodeURIComponent(src)}&w=1200&q=85`;
+    if (window.openLightbox) window.openLightbox(hdUrl);
+  });
 
   // Botão de download — usa fetch para forçar download do R2 (Cross-Origin)
   const dlLink = document.createElement('button');
