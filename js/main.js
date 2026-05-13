@@ -59,7 +59,9 @@
   for (let i = 1; i <= TOTAL; i++) {
     const div = document.createElement('div');
     div.className = 'hero-slide' + (i === 1 ? ' active' : '');
-    div.style.backgroundImage = `url('assets/images/hero/${String(i).padStart(2, '0')}.jpg')`;
+    const rawUrl = `https://fotos.doorpg.com.br/hero/${String(i).padStart(2, '0')}.jpg`;
+    // Usamos proxy wsrv.nl para comprimir as imagens originais gigantes (~20MB) para tamanho Web (1920px)
+    div.style.backgroundImage = `url('https://wsrv.nl/?url=${encodeURIComponent(rawUrl)}&w=1920&q=80')`;
     container.appendChild(div);
     slides.push(div);
   }
@@ -103,15 +105,16 @@
   const grid = document.getElementById('conhecaGrid');
   if (!grid) return;
 
-  const TOTAL = 18;
+  const TOTAL = 15;
   const SLOTS = 6;
   const INTERVAL = 5000;
   let offset = 0;
 
-  // Pré-carregar caminhos
-  const fotos = Array.from({ length: TOTAL }, (_, i) =>
-    `assets/images/conheca/${String(i + 1).padStart(2, '0')}.jpg`
-  );
+  // Pré-carregar caminhos do R2 via proxy para reduzir o peso
+  const fotos = Array.from({ length: TOTAL }, (_, i) => {
+    const rawUrl = `https://fotos.doorpg.com.br/conheca/${String(i + 1).padStart(2, '0')}.jpg`;
+    return `https://wsrv.nl/?url=${encodeURIComponent(rawUrl)}&w=600&q=80`;
+  });
 
   const slots = grid.querySelectorAll('.c-slot img');
 
