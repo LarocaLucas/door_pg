@@ -22,6 +22,7 @@ const EVENTOS = [
   { folder: '08-05-2026', label: '08 · 05 · 2026', total: 79 },
   { folder: '09-05-2026', label: '09 · 05 · 2026', total: 128 },
   { folder: '16-05-2026', label: '16 · 05 · 2026', total: 67 },
+  { folder: '23-05-2026', label: '23 · 05 · 2026', total: 129 },
   // Adicione novos eventos aqui ↓
 ];
 
