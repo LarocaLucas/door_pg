@@ -454,6 +454,13 @@ ul { list-style: none; }
   letter-spacing: 0.08em;
   margin: 0;
 }
+.copa-title em {
+  font-style: normal !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 200 !important;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+}
 /* ══════════════════════════════════════════════════════
    FIM ESTILOS COPA DO MUNDO 2026
    ══════════════════════════════════════════════════════ */
