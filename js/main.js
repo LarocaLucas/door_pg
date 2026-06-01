@@ -169,7 +169,6 @@
   const AGENDA = [
     { file: '29-05', label: 'Sexta-feira · 29/05' },
     { file: '30-05', label: 'Sábado · 30/05' },
-   { file: 'copa', label: 'COPA · 13 - 19 e 24 de Junho' },
   ];
 
   AGENDA.forEach(({ file, label }) => {
