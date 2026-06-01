@@ -461,6 +461,14 @@ ul { list-style: none; }
   letter-spacing: 0.1em;
   color: var(--gray);
 }
+/* Exibe a arte da Copa inteira, sem corte, respeitando a proporção original */
+#agendaCopaGrid .agenda-card {
+  aspect-ratio: unset;
+}
+#agendaCopaGrid .agenda-card img {
+  object-fit: contain;
+  height: auto;
+}
 /* ══════════════════════════════════════════════════════
    FIM ESTILOS COPA DO MUNDO 2026
    ══════════════════════════════════════════════════════ */
