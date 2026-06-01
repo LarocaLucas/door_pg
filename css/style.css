@@ -445,10 +445,9 @@ ul { list-style: none; }
   border-top: 1px solid var(--gray-dim);
 }
 .copa-header {
-  display: flex; align-items: center; gap: 1.2rem;
+  display: flex; flex-direction: column; gap: 0.3rem;
   margin-bottom: 1.5rem;
 }
-.copa-icon { font-size: 2rem; line-height: 1; }
 .copa-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(1.5rem, 4vw, 2rem);
