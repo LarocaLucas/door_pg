@@ -198,6 +198,62 @@
 })();
 
 
+/* ══════════════════════════════════════════════════════
+ * 🏆 BLOCO COPA DO MUNDO 2026 — REMOVER APÓS O TORNEIO
+ * Para remover: apague tudo entre este comentário e o
+ * comentário "FIM BLOCO COPA DO MUNDO" abaixo.
+ * ══════════════════════════════════════════════════════ */
+(function initAgendaCopa() {
+  const grid = document.getElementById('agendaCopaGrid');
+  if (!grid) return;
+
+  /**
+   * 🏆 AGENDA DA COPA DO MUNDO 2026
+   * ─────────────────────────────────
+   * Para ADICIONAR um jogo (oitavas, quartas, etc.):
+   *   1. Faça o upload da arte no Cloudflare R2 → pasta: agenda/
+   *      Nome do arquivo: copa-DD-MM.jpeg  (exemplo: copa-28-06.jpeg)
+   *   2. Insira um novo objeto no array abaixo:
+   *      { file: 'copa-28-06', label: 'Oitavas · 28/06' }
+   *
+   * Para REMOVER um jogo que já passou:
+   *   Delete a linha correspondente do array abaixo.
+   * ─────────────────────────────────
+   */
+  const AGENDA_COPA = [
+    { file: 'copa-13-06', label: 'Jogo · 13/06' },
+    { file: 'copa-19-06', label: 'Jogo · 19/06' },
+    { file: 'copa-24-06', label: 'Jogo · 24/06' },
+  ];
+
+  AGENDA_COPA.forEach(({ file, label }) => {
+    const card = document.createElement('div');
+    card.className = 'agenda-card';
+
+    const img = document.createElement('img');
+    img.src = `https://fotos.doorpg.com.br/agenda/${file}.jpeg?v=1`;
+    img.alt = label;
+    img.loading = 'lazy';
+    img.style.cursor = 'pointer';
+
+    img.addEventListener('click', () => {
+      if (window.openLightbox) window.openLightbox(img.src);
+    });
+
+    const dateTag = document.createElement('div');
+    dateTag.className = 'agenda-date';
+    dateTag.textContent = label;
+
+    card.appendChild(img);
+    card.appendChild(dateTag);
+    grid.appendChild(card);
+  });
+})();
+/* ══════════════════════════════════════════════════════
+ * FIM BLOCO COPA DO MUNDO 2026
+ * ══════════════════════════════════════════════════════ */
+
+
 /* ── 6. MODAL INGRESSOS ────────────────────────────────
  * Abre ao clicar em "Ingressos" no nav
  * Fecha ao clicar no X ou fora do modal
