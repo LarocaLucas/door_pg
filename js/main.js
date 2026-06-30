@@ -167,8 +167,8 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '19-06', label: 'Sexta-feira · 19/06' },
-    { file: '20-06', label: 'Sábado · 20/06' },
+    { file: '03-07', label: 'Sexta-feira · 03/07' },
+    { file: '04-07', label: 'Sábado · 04/07' },
   ];
 
   AGENDA.forEach(({ file, label }) => {
@@ -221,9 +221,7 @@
    * ─────────────────────────────────
    */
   const AGENDA_COPA = [
-    { file: 'copa-13-06', label: 'Jogo · 13/06' },
-    { file: 'copa-19-06', label: 'Jogo · 19/06' },
-    { file: 'copa-24-06', label: 'Jogo · 24/06' },
+    { file: 'copa-05-07', label: 'Jogo · 05/07' },
   ];
 
   AGENDA_COPA.forEach(({ file, label }) => {
