@@ -309,10 +309,12 @@ ul { list-style: none; }
 .marcas-track {
   display: flex; align-items: center; gap: 2rem;
   white-space: nowrap;
-  animation: marquee 18s linear infinite;
+  width: max-content;
+  max-width: none;
+  animation: marquee 25s linear infinite;
 }
 @media (max-width: 600px) {
-  .marcas-track { animation: marquee 10s linear infinite; width: max-content; }
+  .marcas-track { animation: marquee 14s linear infinite; }
 }
 .marca-logo {
   height: 28px;
@@ -329,15 +331,23 @@ ul { list-style: none; }
 .marca-sep { color: var(--gray-dim); font-size: 0.5rem; flex-shrink: 0; }
 
 /* Ajustes individuais por logo */
-.marca-logo[alt="Red Bull"]      { height: 56px; }
-.marca-logo[alt="Tanqueray"]     { height: 90px; }
-.marca-logo[alt="Del Valle"]     { height: 44px; }
-.marca-logo[alt="Budweiser"]     { height: 36px; max-width: 160px; }
-.marca-logo[alt="Absolut"]       { height: 22px; }
-.marca-logo[alt="Johnnie Walker"]{ height: 30px; max-width: 160px; }
-.marca-logo[alt="José Cuervo"]   { height: 36px; }
-.marca-logo[alt="Coca-Cola"]     { height: 32px; }
-.marca-logo[alt="Heineken"]      { height: 30px; }
+.marca-logo[alt="Red Bull"]       { height: 56px; }
+.marca-logo[alt="Tanqueray"]      { height: 90px; }
+.marca-logo[alt="Del Valle"]      { height: 44px; }
+.marca-logo[alt="Absolut"]        { height: 22px; }
+.marca-logo[alt="Johnnie Walker"] { height: 30px; max-width: 160px; }
+.marca-logo[alt="José Cuervo"]    { height: 36px; }
+.marca-logo[alt="Coca-Cola"]      { height: 32px; }
+.marca-logo[alt="Heineken"]       { height: 30px; }
+.marca-logo[alt="Blue Moon"]      { height: 52px; }
+.marca-logo[alt="Cîroc"]          { height: 44px; }
+.marca-logo[alt="Grey Goose"]     { height: 48px; }
+.marca-logo[alt="Jack Daniel's"]  { height: 50px; }
+.marca-logo[alt="Jägermeister"]   { height: 52px; }
+.marca-logo[alt="Licor 43"]       { height: 40px; }
+.marca-logo[alt="Monster"]        { height: 42px; }
+.marca-logo[alt="Old Parr"]       { height: 48px; }
+.marca-logo[alt="Sol"]            { height: 50px; }
 
 @keyframes marquee {
   0%   { transform: translateX(0); }
@@ -630,7 +640,8 @@ ul { list-style: none; }
 * { max-width: 100%; }
 img, svg { max-width: 100%; height: auto; }
 .marcas-strip { overflow: hidden; }
-.marcas-track { will-change: transform; }
+.marcas-track { will-change: transform; max-width: none; }
+.marca-logo { max-width: 120px; height: 28px; }
 
 /* ── MOBILE ──────────────────────────────────────────── */
 @media (max-width: 900px) {
