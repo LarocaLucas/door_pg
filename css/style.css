@@ -444,44 +444,7 @@ ul { list-style: none; }
 }
 .agenda-cta p { font-size: 0.8rem; color: var(--gray); letter-spacing: 0.1em; }
 
-/* ══════════════════════════════════════════════════════
-   🏆 ESTILOS COPA DO MUNDO 2026 — REMOVER APÓS O TORNEIO
-   Para remover: apague tudo entre este comentário e o
-   comentário "FIM ESTILOS COPA DO MUNDO" abaixo.
-   ══════════════════════════════════════════════════════ */
-.copa-bloco {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--gray-dim);
-}
-.copa-header {
-  display: flex; flex-direction: column; gap: 0.3rem;
-  margin-bottom: 1.5rem;
-}
-.copa-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  letter-spacing: 0.08em;
-  margin: 0;
-}
-.copa-title em {
-  font-style: normal !important;
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 200 !important;
-  letter-spacing: 0.1em;
-  color: var(--gray);
-}
-/* Exibe a arte da Copa inteira, sem corte, respeitando a proporção original */
-#agendaCopaGrid .agenda-card {
-  aspect-ratio: unset;
-}
-#agendaCopaGrid .agenda-card img {
-  object-fit: contain;
-  height: auto;
-}
-/* ══════════════════════════════════════════════════════
-   FIM ESTILOS COPA DO MUNDO 2026
-   ══════════════════════════════════════════════════════ */
+
 
 /* ── RESERVAS ────────────────────────────────────────── */
 .reservas-sub {
