@@ -117,4 +117,17 @@
   .gal-eventos { padding: 1.5rem; }
   .gal-main { padding: 2rem 1.5rem 4rem; }
   .gal-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 4px; }
+
+  /* Esconde botão de download nas miniaturas (evita download acidental no scroll) */
+  .foto-download { display: none !important; }
+
+  /* Overlay sempre visível no mobile para indicar que é clicável */
+  .foto-overlay {
+    opacity: 0;
+    background: transparent;
+  }
+  .foto-card:active .foto-overlay {
+    opacity: 1;
+    background: rgba(0,0,0,0.3);
+  }
 }

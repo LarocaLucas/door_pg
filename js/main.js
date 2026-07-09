@@ -266,21 +266,29 @@
 
 
 /* ── 8. LIGHTBOX DE IMAGENS ─────────────────────────────
- * Abre imagens em tela cheia ao serem clicadas
+ * Abre imagens em tela cheia com navegação entre fotos
+ * Suporta: setas (desktop), swipe (mobile), teclado
  ─────────────────────────────────────────────────────── */
 (function initLightbox() {
   const overlay = document.getElementById('imageLightbox');
   const imgEl = document.getElementById('lightboxImg');
   const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  const counterEl = document.getElementById('lightboxCounter');
+  const downloadBtn = document.getElementById('lightboxDownload');
 
   if (!overlay || !imgEl) return;
+
+  // Estado da galeria
+  let galleryList = [];    // lista de { hdUrl, rawSrc, folder, num }
+  let currentIndex = -1;
 
   function closeLightbox() {
     overlay.classList.remove('active');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    
-    // Limpa a imagem antiga após a animação de fade (evita piscar a foto velha na próxima abertura)
+
     setTimeout(() => {
       if (!overlay.classList.contains('active')) {
         imgEl.src = '';
@@ -288,24 +296,144 @@
     }, 300);
   }
 
-  // Função global para abrir
-  window.openLightbox = function (src) {
-    imgEl.src = src;
+  function showPhoto(index) {
+    if (index < 0 || index >= galleryList.length) return;
+    currentIndex = index;
+
+    const item = galleryList[currentIndex];
+    imgEl.src = item.hdUrl;
+
+    // Atualiza counter
+    if (counterEl) {
+      counterEl.textContent = `${currentIndex + 1} / ${galleryList.length}`;
+    }
+
+    // Mostra/esconde setas
+    if (prevBtn) prevBtn.style.display = currentIndex > 0 ? '' : 'none';
+    if (nextBtn) nextBtn.style.display = currentIndex < galleryList.length - 1 ? '' : 'none';
+  }
+
+  function goPrev() {
+    if (currentIndex > 0) showPhoto(currentIndex - 1);
+  }
+
+  function goNext() {
+    if (currentIndex < galleryList.length - 1) showPhoto(currentIndex + 1);
+  }
+
+  // Função global para abrir a galeria com navegação (chamada por galeria.js)
+  window.openGalleryLightbox = function (list, index) {
+    galleryList = list;
+    currentIndex = index;
+
+    showPhoto(index);
+
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   };
 
-  // Fecha ao clicar no X
+  // Função global simples (retrocompatível — usada pela agenda)
+  window.openLightbox = function (src) {
+    galleryList = [{ hdUrl: src, rawSrc: '', folder: '', num: 0 }];
+    currentIndex = 0;
+
+    imgEl.src = src;
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    // Esconde navegação para uso simples
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (counterEl) counterEl.textContent = '';
+    if (downloadBtn) downloadBtn.style.display = 'none';
+  };
+
+  // ── Botões de navegação
+  if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); goPrev(); });
+  if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); goNext(); });
   if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
 
-  // Fecha ao clicar fora da imagem
+  // ── Download dentro do lightbox
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const item = galleryList[currentIndex];
+      if (!item || !item.rawSrc) return;
+
+      const span = downloadBtn.querySelector('span');
+      const originalText = span ? span.textContent : '';
+
+      if (span) span.textContent = '...';
+      downloadBtn.style.pointerEvents = 'none';
+      downloadBtn.style.opacity = '0.7';
+
+      try {
+        const response = await fetch(`${item.rawSrc}?v=${Date.now()}`);
+        if (!response.ok) throw new Error('Erro ao buscar imagem');
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+
+        const tempLink = document.createElement('a');
+        tempLink.style.display = 'none';
+        tempLink.href = url;
+        tempLink.download = `door-pg_${item.folder}_${String(item.num).padStart(2, '0')}.jpg`;
+
+        document.body.appendChild(tempLink);
+        tempLink.click();
+
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(tempLink);
+      } catch (error) {
+        console.error('Erro no download:', error);
+        alert('Não foi possível baixar a imagem. Tente novamente mais tarde.');
+      } finally {
+        if (span) span.textContent = originalText;
+        downloadBtn.style.pointerEvents = 'auto';
+        downloadBtn.style.opacity = '1';
+      }
+    });
+  }
+
+  // ── Fecha ao clicar fora da imagem (mas não nos botões)
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeLightbox();
   });
 
-  // Fecha com ESC
+  // ── Teclado: ESC, ← , →
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') goPrev();
+    if (e.key === 'ArrowRight') goNext();
   });
+
+  // ── Swipe touch (mobile)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isSwiping = false;
+
+  overlay.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+    isSwiping = true;
+  }, { passive: true });
+
+  overlay.addEventListener('touchend', (e) => {
+    if (!isSwiping) return;
+    isSwiping = false;
+
+    const deltaX = e.changedTouches[0].screenX - touchStartX;
+    const deltaY = e.changedTouches[0].screenY - touchStartY;
+
+    // Só navega se o swipe horizontal for maior que o vertical (evita scroll acidental)
+    if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+
+    if (deltaX < 0) goNext();   // swipe para esquerda → próxima
+    else goPrev();              // swipe para direita → anterior
+  }, { passive: true });
 })();

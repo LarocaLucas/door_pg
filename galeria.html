@@ -120,7 +120,24 @@
   <!-- LIGHTBOX DE IMAGEM -->
   <div class="lightbox-overlay" id="imageLightbox" aria-hidden="true">
     <button class="lightbox-close" id="lightboxClose" aria-label="Fechar">✕</button>
+    <button class="lightbox-prev" id="lightboxPrev" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
     <img class="lightbox-img" id="lightboxImg" src="" alt="Imagem expandida">
+    <button class="lightbox-next" id="lightboxNext" aria-label="Próxima foto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+    <div class="lightbox-bottom">
+      <span class="lightbox-counter" id="lightboxCounter"></span>
+      <button class="lightbox-download" id="lightboxDownload" aria-label="Baixar foto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Baixar</span>
+      </button>
+    </div>
   </div>
 
   <script src="js/galeria.js"></script>

@@ -77,6 +77,9 @@ function renderEventos() {
 }
 
 /* ── Renderiza fotos do evento ────────────────────── */
+/** Lista de fotos do evento ativo — usada pelo lightbox para navegação */
+let currentGalleryList = [];
+
 function renderFotos(folder) {
   const grid = document.getElementById('galGrid');
   const empty = document.getElementById('galEmpty');
@@ -84,6 +87,7 @@ function renderFotos(folder) {
 
   // Limpa o grid
   grid.innerHTML = '';
+  currentGalleryList = [];
 
   const evento = EVENTOS.find(e => e.folder === folder);
   if (!evento) {
@@ -92,6 +96,13 @@ function renderFotos(folder) {
   }
 
   if (empty) empty.style.display = 'none';
+
+  // Monta a lista de fotos para o lightbox
+  for (let i = 1; i <= evento.total; i++) {
+    const rawSrc = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg`;
+    const hdUrl = `https://wsrv.nl/?url=${encodeURIComponent(rawSrc)}&w=1200&q=85`;
+    currentGalleryList.push({ hdUrl, rawSrc, folder, num: i });
+  }
 
   // Cria cards para cada foto
   for (let i = 1; i <= evento.total; i++) {
@@ -144,10 +155,11 @@ function criarFotoCard(src, num, folder) {
   overlay.className = 'foto-overlay';
   overlay.style.cursor = 'zoom-in';
 
-  // Abre o lightbox ao clicar no overlay (carrega a versão web HD, não a bruta de 20MB)
+  // Abre o lightbox ao clicar no overlay com navegação
   overlay.addEventListener('click', () => {
-    const hdUrl = `https://wsrv.nl/?url=${encodeURIComponent(src)}&w=1200&q=85`;
-    if (window.openLightbox) window.openLightbox(hdUrl);
+    if (window.openGalleryLightbox) {
+      window.openGalleryLightbox(currentGalleryList, num - 1);
+    }
   });
 
   // Botão de download — usa fetch para forçar download do R2 (Cross-Origin)
