@@ -18,6 +18,10 @@
  * @type {Array<{folder: string, label: string, total: number}>}
  */
 const EVENTOS = [
+  { folder: '25-07-2026', label: '25 · 07 · 2026', total: 111 },
+  { folder: '24-07-2026', label: '24 · 07 · 2026', total: 101 },
+  { folder: '18-07-2026', label: '18 · 07 · 2026', total: 94 },
+  { folder: '17-07-2026', label: '17 · 07 · 2026', total: 92 },
   { folder: '11-07-2026', label: '11 · 07 · 2026', total: 80 },
   { folder: '10-07-2026', label: '10 · 07 · 2026', total: 177 },
   { folder: '05-07-2026', label: '05 · 07 · 2026', total: 212 },
