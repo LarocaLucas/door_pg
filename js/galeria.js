@@ -18,6 +18,7 @@
  * @type {Array<{id: string, label: string}>}
  */
 const CATEGORIAS = [
+  { id: '08-2026', label: 'Agosto 2026' },
   { id: '07-2026', label: 'Julho 2026' },
   { id: 'petroski', label: 'Petroski' },
   { id: '06-2026', label: 'Junho 2026' },
@@ -107,7 +108,11 @@ function renderDatas(catId) {
   container.innerHTML = '';
 
   const eventosDaCategoria = EVENTOS.filter(e => e.categoria === catId);
-  if (!eventosDaCategoria.length) return;
+  if (!eventosDaCategoria.length) {
+    eventoAtivo = null;
+    renderFotos(null);
+    return;
+  }
 
   // Seleciona o primeiro evento dessa categoria por padrão
   eventoAtivo = eventosDaCategoria[0].folder;
@@ -152,6 +157,11 @@ function renderFotos(folder) {
   // Limpa o grid
   grid.innerHTML = '';
   currentGalleryList = [];
+
+  if (!folder) {
+    if (empty) empty.style.display = 'block';
+    return;
+  }
 
   const evento = EVENTOS.find(e => e.folder === folder);
   if (!evento) {

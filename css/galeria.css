@@ -41,7 +41,7 @@
 
 /* Datas (secundário) */
 .gal-eventos {
-  display: flex; gap: 0; flex-wrap: wrap;
+  display: flex; gap: 0; flex-wrap: nowrap;
   padding: 1.5rem 4rem;
   border-bottom: 1px solid var(--gray-dim);
   overflow-x: auto;
