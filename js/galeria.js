@@ -14,61 +14,115 @@
 'use strict';
 
 /**
- * Registro de eventos disponíveis na galeria.
- * @type {Array<{folder: string, label: string, total: number}>}
+ * Registro de categorias/meses.
+ * @type {Array<{id: string, label: string}>}
  */
-const EVENTOS = [
-  { folder: '25-07-2026', label: '25 · 07 · 2026', total: 111 },
-  { folder: '24-07-2026', label: '24 · 07 · 2026', total: 101 },
-  { folder: '18-07-2026', label: '18 · 07 · 2026', total: 94 },
-  { folder: '17-07-2026', label: '17 · 07 · 2026', total: 92 },
-  { folder: '11-07-2026', label: '11 · 07 · 2026', total: 80 },
-  { folder: '10-07-2026', label: '10 · 07 · 2026', total: 177 },
-  { folder: '05-07-2026', label: '05 · 07 · 2026', total: 212 },
-  { folder: '04-07-2026', label: '04 · 07 · 2026', total: 128 },
-  { folder: '03-07-2026', label: '03 · 07 · 2026', total: 95 },
-  { folder: '27-06-2026', label: '27 · 06 · 2026', total: 101 },
-  { folder: '26-06-2026', label: '26 · 06 · 2026', total: 123 },
-  { folder: '24-06-2026', label: '24 · 06 · 2026', total: 111 },
-  { folder: '20-06-2026', label: '20 · 06 · 2026', total: 172 },
-  { folder: '19-06-2026', label: '19 · 06 · 2026', total: 177 },
-  { folder: '13-06-2026', label: '13 · 06 · 2026', total: 194 },
-  { folder: '12-06-2026', label: '12 · 06 · 2026', total: 127 },
-  { folder: '06-06-2026', label: '06 · 06 · 2026', total: 165 },
-  { folder: '05-06-2026', label: '05 · 06 · 2026', total: 187 },
-  { folder: '03-06-2026', label: '03 · 06 · 2026', total: 119 },
-  { folder: '23-05-2026', label: '23 · 05 · 2026', total: 129 },
-  { folder: '16-05-2026', label: '16 · 05 · 2026', total: 67 },
-  { folder: '09-05-2026', label: '09 · 05 · 2026', total: 128 },
-  { folder: '08-05-2026', label: '08 · 05 · 2026', total: 79 },
-  { folder: '07-05-2026', label: '07 · 05 · 2026', total: 107 },  
-  // Adicione novos eventos aqui ↓
+const CATEGORIAS = [
+  { id: '07-2026', label: 'Julho 2026' },
+  { id: 'petroski', label: 'Petroski' },
+  { id: '06-2026', label: 'Junho 2026' },
+  { id: '05-2026', label: 'Maio 2026' },
 ];
 
-/** Evento selecionado no momento */
-let eventoAtivo = EVENTOS[0]?.folder ?? null;
+/**
+ * Registro de eventos disponíveis na galeria.
+ * @type {Array<{folder: string, label: string, total: number, categoria: string}>}
+ */
+const EVENTOS = [
+  { folder: '25-07-2026', label: '25 · 07 · 2026', total: 111, categoria: '07-2026' },
+  { folder: '24-07-2026', label: '24 · 07 · 2026', total: 101, categoria: '07-2026' },
+  { folder: '18-07-2026', label: '18 · 07 · 2026', total: 94, categoria: '07-2026' },
+  { folder: '17-07-2026', label: '17 · 07 · 2026', total: 92, categoria: '07-2026' },
+  { folder: '11-07-2026', label: '11 · 07 · 2026', total: 80, categoria: '07-2026' },
+  { folder: '10-07-2026', label: '10 · 07 · 2026', total: 177, categoria: 'petroski' },
+  { folder: '05-07-2026', label: '05 · 07 · 2026', total: 212, categoria: '07-2026' },
+  { folder: '04-07-2026', label: '04 · 07 · 2026', total: 128, categoria: '07-2026' },
+  { folder: '03-07-2026', label: '03 · 07 · 2026', total: 95, categoria: '07-2026' },
+  { folder: '27-06-2026', label: '27 · 06 · 2026', total: 101, categoria: '06-2026' },
+  { folder: '26-06-2026', label: '26 · 06 · 2026', total: 123, categoria: '06-2026' },
+  { folder: '24-06-2026', label: '24 · 06 · 2026', total: 111, categoria: '06-2026' },
+  { folder: '20-06-2026', label: '20 · 06 · 2026', total: 172, categoria: '06-2026' },
+  { folder: '19-06-2026', label: '19 · 06 · 2026', total: 177, categoria: '06-2026' },
+  { folder: '13-06-2026', label: '13 · 06 · 2026', total: 194, categoria: '06-2026' },
+  { folder: '12-06-2026', label: '12 · 06 · 2026', total: 127, categoria: '06-2026' },
+  { folder: '06-06-2026', label: '06 · 06 · 2026', total: 165, categoria: '06-2026' },
+  { folder: '05-06-2026', label: '05 · 06 · 2026', total: 187, categoria: '06-2026' },
+  { folder: '03-06-2026', label: '03 · 06 · 2026', total: 119, categoria: '06-2026' },
+  { folder: '23-05-2026', label: '23 · 05 · 2026', total: 129, categoria: '05-2026' },
+  { folder: '16-05-2026', label: '16 · 05 · 2026', total: 67, categoria: '05-2026' },
+  { folder: '09-05-2026', label: '09 · 05 · 2026', total: 128, categoria: '05-2026' },
+  { folder: '08-05-2026', label: '08 · 05 · 2026', total: 79, categoria: '05-2026' },
+  { folder: '07-05-2026', label: '07 · 05 · 2026', total: 107, categoria: '05-2026' },  
+];
+
+/** Estado da galeria */
+let categoriaAtiva = CATEGORIAS[0]?.id ?? null;
+let eventoAtivo = null;
 
 /* ── Inicialização ────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  renderEventos();
-  if (eventoAtivo) renderFotos(eventoAtivo);
+  renderCategorias();
+  if (categoriaAtiva) selectCategoria(categoriaAtiva);
 });
 
-/* ── Renderiza botões de evento ───────────────────── */
-function renderEventos() {
-  const container = document.getElementById('galEventos');
+/* ── Renderiza abas de categoria (Meses / Especiais) ─ */
+function renderCategorias() {
+  const container = document.getElementById('galCategorias');
   if (!container) return;
 
-  EVENTOS.forEach(({ folder, label }) => {
+  CATEGORIAS.forEach(({ id, label }) => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn' + (id === categoriaAtiva ? ' active' : '');
+    btn.textContent = label;
+    btn.setAttribute('aria-pressed', id === categoriaAtiva);
+    
+    btn.addEventListener('click', () => {
+      if (id === categoriaAtiva) return;
+      selectCategoria(id);
+    });
+    
+    container.appendChild(btn);
+  });
+}
+
+function selectCategoria(id) {
+  categoriaAtiva = id;
+
+  // Atualiza estado visual das abas primárias
+  const container = document.getElementById('galCategorias');
+  if (container) {
+    container.querySelectorAll('.cat-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent === CATEGORIAS.find(c => c.id === id).label);
+      b.setAttribute('aria-pressed', b.classList.contains('active'));
+    });
+  }
+
+  renderDatas(id);
+}
+
+/* ── Renderiza botões de datas filhas da categoria ── */
+function renderDatas(catId) {
+  const container = document.getElementById('galDatas');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const eventosDaCategoria = EVENTOS.filter(e => e.categoria === catId);
+  if (!eventosDaCategoria.length) return;
+
+  // Seleciona o primeiro evento dessa categoria por padrão
+  eventoAtivo = eventosDaCategoria[0].folder;
+
+  eventosDaCategoria.forEach(({ folder, label }) => {
     const btn = document.createElement('button');
     btn.className = 'evento-btn' + (folder === eventoAtivo ? ' active' : '');
     btn.textContent = label;
     btn.setAttribute('aria-pressed', folder === eventoAtivo);
+    
     btn.addEventListener('click', () => {
       if (folder === eventoAtivo) return;
       eventoAtivo = folder;
 
-      // Atualiza estado dos botões
+      // Atualiza estado visual das abas secundárias
       container.querySelectorAll('.evento-btn').forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-pressed', 'false');
@@ -78,8 +132,12 @@ function renderEventos() {
 
       renderFotos(folder);
     });
+    
     container.appendChild(btn);
   });
+
+  // Carrega as fotos do evento recém-selecionado
+  renderFotos(eventoAtivo);
 }
 
 /* ── Renderiza fotos do evento ────────────────────── */

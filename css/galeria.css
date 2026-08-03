@@ -19,17 +19,38 @@
   line-height: 1.7; max-width: 400px;
 }
 
-/* Seletor de eventos */
+/* Categorias (Meses / Especiais) */
+.gal-categorias {
+  display: flex; gap: 1.5rem;
+  padding: 2rem 4rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  overflow-x: auto;
+}
+.cat-btn {
+  background: none; border: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; letter-spacing: 0.1em;
+  color: var(--gray);
+  cursor: pointer; transition: all 0.3s;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.cat-btn:hover { color: var(--white); }
+.cat-btn.active { color: var(--white); border-bottom-color: var(--white); }
+
+/* Datas (secundário) */
 .gal-eventos {
   display: flex; gap: 0; flex-wrap: wrap;
-  padding: 2rem 4rem;
+  padding: 1.5rem 4rem;
   border-bottom: 1px solid var(--gray-dim);
   overflow-x: auto;
+  min-height: 80px;
 }
 .evento-btn {
   background: none;
   border: none; border-right: 1px solid var(--gray-dim);
-  padding: 0.8rem 1.8rem;
+  padding: 0.6rem 1.6rem;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.65rem; font-weight: 500;
@@ -114,7 +135,9 @@
 /* Mobile */
 @media (max-width: 900px) {
   .gal-header { padding: calc(var(--nav-h) + 2rem) 1.5rem 2rem; }
-  .gal-eventos { padding: 1.5rem; }
+  .gal-categorias { padding: 1.5rem 1.5rem 0.5rem; gap: 1rem; }
+  .cat-btn { font-size: 1.2rem; }
+  .gal-eventos { padding: 1rem 1.5rem; }
   .gal-main { padding: 2rem 1.5rem 4rem; }
   .gal-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 4px; }
 
