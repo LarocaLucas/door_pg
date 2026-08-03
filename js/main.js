@@ -16,10 +16,27 @@
   const toggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
 
-  // Scroll → fundo escuro
+  // Scroll → fundo escuro e FABs
   window.addEventListener('scroll', () => {
-    if (!navbar) return;
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    if (navbar) {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }
+
+    // Lógica dos Floating Buttons (mobile, index.html)
+    const fabContainer = document.getElementById('fabContainer');
+    const hero = document.getElementById('hero');
+    const footer = document.getElementById('footer');
+
+    if (fabContainer && hero && footer && window.innerWidth <= 900) {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const footerTop = footer.getBoundingClientRect().top;
+      
+      if (heroBottom < 0 && footerTop > window.innerHeight) {
+        fabContainer.classList.add('visible');
+      } else {
+        fabContainer.classList.remove('visible');
+      }
+    }
   }, { passive: true });
 
   // Toggle mobile

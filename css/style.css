@@ -641,7 +641,8 @@ img, svg { max-width: 100%; height: auto; }
   .section-title { font-size: clamp(1.6rem, 8vw, 2.5rem); word-break: break-word; white-space: normal; }
   #local .section-title { font-size: clamp(1.4rem, 7vw, 2rem); }
   .contato-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+  .footer-inner { grid-template-columns: 1fr 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+  .footer-brand { grid-column: 1 / -1; }
   .footer-bottom { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
   .road-item {
     grid-template-columns: 1fr;
@@ -664,6 +665,42 @@ img, svg { max-width: 100%; height: auto; }
   .conheca-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
   .c-slot--lg { grid-row: span 1; }
   .c-slot { height: 240px; }
+}
+
+/* ── FLOATING ACTION BUTTONS (MOBILE) ───────────────── */
+.fab-container {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  display: flex; flex-direction: column; gap: 0.8rem;
+  align-items: center;
+  z-index: 999;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(20px);
+}
+.fab-container.visible {
+  opacity: 1; pointer-events: auto;
+  transform: translateY(0);
+}
+.fab {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  color: #fff; text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.2s;
+}
+.fab:active { transform: scale(0.95); }
+.fab-ig {
+  width: 44px; height: 44px;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+.fab-wpp {
+  width: 56px; height: 56px;
+  background: #25D366;
+}
+
+@media (min-width: 901px) {
+  .fab-container { display: none !important; }
 }
 
 /* ── LIGHTBOX ───────────────────────────────────────── */
