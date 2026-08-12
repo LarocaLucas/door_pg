@@ -19,6 +19,7 @@
  */
 const CATEGORIAS = [
   { id: '08-2026', label: 'Agosto 2026' },
+  { id: 'jonatas', label: 'Jonatas Felipe' },
   { id: '07-2026', label: 'Julho 2026' },
   { id: 'petroski', label: 'Petroski' },
   { id: '06-2026', label: 'Junho 2026' },
@@ -31,6 +32,7 @@ const CATEGORIAS = [
  */
 const EVENTOS = [
   { folder: '07-08-2026', label: '07 · 08 · 2026', total: 162, categoria: '08-2026' },
+  { folder: '01-08-2026', label: '01 · 08 · 2026', total: 137, categoria: 'jonatas' },
   { folder: '25-07-2026', label: '25 · 07 · 2026', total: 111, categoria: '07-2026' },
   { folder: '24-07-2026', label: '24 · 07 · 2026', total: 101, categoria: '07-2026' },
   { folder: '18-07-2026', label: '18 · 07 · 2026', total: 94, categoria: '07-2026' },
