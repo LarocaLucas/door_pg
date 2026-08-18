@@ -66,6 +66,13 @@
   const dotsEl = document.getElementById('heroDots');
   if (!container) return;
 
+  // No mobile, roda o vídeo e não cria slideshow
+  if (window.innerWidth <= 900) {
+    container.innerHTML = '<video src="https://fotos.doorpg.com.br/hero/hero-video-door.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>';
+    if (dotsEl) dotsEl.style.display = 'none';
+    return;
+  }
+
   const TOTAL = 13;   // total de fotos na pasta hero
   const INTERVAL = 4000; // ms entre slides
   let current = 0;

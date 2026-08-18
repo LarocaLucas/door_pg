@@ -179,14 +179,14 @@ function renderFotos(folder) {
 
   // Monta a lista de fotos para o lightbox
   for (let i = 1; i <= evento.total; i++) {
-    const rawSrc = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg`;
+    const rawSrc = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg?v=20260818`;
     const hdUrl = `https://wsrv.nl/?url=${encodeURIComponent(rawSrc)}&w=1200&q=85`;
     currentGalleryList.push({ hdUrl, rawSrc, folder, num: i });
   }
 
   // Cria cards para cada foto
   for (let i = 1; i <= evento.total; i++) {
-    const src = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg`;
+    const src = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg?v=20260818`;
     const card = criarFotoCard(src, i, folder);
     grid.appendChild(card);
   }

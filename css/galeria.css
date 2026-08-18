@@ -90,24 +90,23 @@
 .foto-overlay {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.6);
-  display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.3s;
 }
 .foto-card:hover .foto-overlay { opacity: 1; }
 
 .foto-download {
-  display: inline-flex; align-items: center; gap: 0.5rem;
+  position: absolute;
+  bottom: 0.8rem; right: 0.8rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px;
   background: var(--white); color: var(--black);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700; font-size: 0.6rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  padding: 0.7rem 1.4rem;
-  border: none; cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s;
+  border: none; border-radius: 4px;
+  cursor: pointer; transition: transform 0.2s;
+  padding: 0;
 }
-.foto-download:hover { background: transparent; color: var(--white); border: 1px solid var(--white); }
-.foto-download svg { flex-shrink: 0; }
+.foto-download span { display: none; }
+.foto-download svg { width: 20px; height: 20px; margin: 0; }
+.foto-download:hover { transform: scale(1.1); }
 
 /* Número da foto */
 .foto-num {
