@@ -32,7 +32,7 @@ const CATEGORIAS = [
  * @type {Array<{folder: string, label: string, total: number, categoria: string}>}
  */
 const EVENTOS = [
-  { folder: '15-08-2026', label: '15 · 08 · 2026', total: 130, categoria: 'pq&n' },
+  { folder: '15-08-2026', label: '15 · 08 · 2026', total: 128, categoria: 'pq&n' },
   { folder: '14-08-2026', label: '14 · 08 · 2026', total: 21, categoria: '08-2026' },
   { folder: '07-08-2026', label: '07 · 08 · 2026', total: 162, categoria: 'jonatas' },
   { folder: '01-08-2026', label: '01 · 08 · 2026', total: 137, categoria: '08-2026' },
