@@ -722,6 +722,8 @@ img, svg { max-width: 100%; height: auto; }
 }
 .lightbox-img {
   display: block;
+  width: auto !important;
+  height: auto !important;
   max-width: 90vw; max-height: 90vh;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   transform: scale(0.95);
