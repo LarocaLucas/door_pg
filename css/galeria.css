@@ -140,16 +140,21 @@
   .gal-main { padding: 2rem 1.5rem 4rem; }
   .gal-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 4px; }
 
-  /* Esconde botão de download nas miniaturas (evita download acidental no scroll) */
-  .foto-download { display: none !important; }
-
-  /* Overlay sempre visível no mobile para indicar que é clicável */
+  /* Overlay sempre com opacidade 1 no mobile para mostrar o botão de download */
   .foto-overlay {
-    opacity: 0;
+    opacity: 1;
     background: transparent;
   }
   .foto-card:active .foto-overlay {
-    opacity: 1;
     background: rgba(0,0,0,0.3);
+  }
+
+  /* Ajusta o tamanho do botão para não ficar muito grande nas telas menores */
+  .foto-download {
+    width: 32px; height: 32px;
+    bottom: 0.5rem; right: 0.5rem;
+  }
+  .foto-download svg {
+    width: 16px; height: 16px;
   }
 }
