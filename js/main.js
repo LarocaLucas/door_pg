@@ -193,6 +193,7 @@
   const AGENDA = [
     { file: '04-09', label: 'Sexta-feira · 04/09' },
     { file: '05-09', label: 'Sábado · 05/09' },
+   { file: '06-09', label: 'Domingo · 06/09' },
   ];
 
   AGENDA.forEach(({ file, label }) => {
