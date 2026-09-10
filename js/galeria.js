@@ -18,6 +18,7 @@
  * @type {Array<{id: string, label: string}>}
  */
 const CATEGORIAS = [
+  { id: '09-2026', label: 'Setembro 2026' },
   { id: '08-2026', label: 'Agosto 2026' },
   { id: 'pq&n', label: 'Pedro Qualy & Nog' },
   { id: 'jonatas', label: 'Jonatas Felipe' },
@@ -32,6 +33,9 @@ const CATEGORIAS = [
  * @type {Array<{folder: string, label: string, total: number, categoria: string}>}
  */
 const EVENTOS = [
+  { folder: '06-09-2026', label: '06 · 09 · 2026', total: 109, categoria: '09-2026' },
+  { folder: '05-09-2026', label: '05 · 09 · 2026', total: 75, categoria: '09-2026' },
+  { folder: '04-09-2026', label: '04 · 09 · 2026', total: 115, categoria: '09-2026' },
   { folder: '15-08-2026', label: '15 · 08 · 2026', total: 128, categoria: 'pq&n' },
   { folder: '14-08-2026', label: '14 · 08 · 2026', total: 21, categoria: '08-2026' },
   { folder: '07-08-2026', label: '07 · 08 · 2026', total: 162, categoria: 'jonatas' },
