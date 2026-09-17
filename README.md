@@ -112,7 +112,6 @@ Ver **`GUIA-MANUTENCAO.md`** para instruções detalhadas sobre:
 ## Futuro
 
 - **Ingressos:** integração com Sympla ou Ingresse quando operacional
-- **www:** CNAME `www.doorpg.com.br` propaga automaticamente em até 48h
 
 ---
 
