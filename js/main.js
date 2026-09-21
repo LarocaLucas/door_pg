@@ -191,8 +191,8 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '18-09', label: 'Sexta-feira · 18/09' },
-    { file: '19-09', label: 'Sábado · 19/09' },
+    { file: '25-09', label: 'Sexta-feira · 25/09' },
+    { file: '26-09', label: 'Sábado · 26/09' },
   ];
 
   AGENDA.forEach(({ file, label }) => {
