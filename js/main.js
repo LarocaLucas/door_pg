@@ -28,8 +28,8 @@
     });
     setTimeout(openTransition, 2600); // garantia, caso o transitionend não dispare
   }
-  // Dois frames de espera garantem que o navegador pintou o estado inicial antes de animar
-  requestAnimationFrame(() => requestAnimationFrame(() => targetEl.classList.add('is-unlocked')));
+  // setTimeout curto (50ms) é mais confiável que double rAF entre navegadores para o first paint de grandes repaints
+  setTimeout(() => targetEl.classList.add('is-unlocked'), 50);
 })();
 
 /* ── 2. NAVBAR ─────────────────────────────────────────

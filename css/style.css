@@ -871,7 +871,8 @@ d=M11 26 L8.5 54 L31.5 54 L29 26 Z/%3E%3C/svg%3E\);
   -webkit-mask-size: 7vmin auto; mask-size: 7vmin auto;
   transition: -webkit-mask-size 1500ms cubic-bezier(0.76, 0, 0.24, 1) 500ms,
               mask-size 1500ms cubic-bezier(0.76, 0, 0.24, 1) 500ms;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 .js body.has-transition.is-unlocked:not(.is-open) .page-transition-wrapper {
   -webkit-mask-size: 520vmax auto; mask-size: 520vmax auto;

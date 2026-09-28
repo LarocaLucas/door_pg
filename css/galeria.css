@@ -21,46 +21,54 @@
 
 /* Categorias (Meses / Especiais) */
 .gal-categorias {
-  display: flex; gap: 1.5rem;
+  display: flex; gap: 1rem;
   padding: 2rem 4rem 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
   overflow-x: auto;
 }
 .cat-btn {
-  background: none; border: none;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem; letter-spacing: 0.1em;
+  background: none; 
+  border: 1px solid var(--gray-dim);
+  border-radius: 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;
   color: var(--gray);
   cursor: pointer; transition: all 0.3s;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid transparent;
+  padding: 0.7rem 1.8rem;
   white-space: nowrap;
 }
-.cat-btn:hover { color: var(--white); }
-.cat-btn.active { color: var(--white); border-bottom-color: var(--white); }
+.cat-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.cat-btn.active { color: var(--white); border-color: rgba(255,255,255,0.4); }
 
 /* Datas (secundário) */
 .gal-eventos {
-  display: flex; gap: 0; flex-wrap: nowrap;
-  padding: 1.5rem 4rem;
+  display: flex; gap: 1rem; flex-wrap: nowrap;
+  padding: 0 4rem 2rem;
   border-bottom: 1px solid var(--gray-dim);
   overflow-x: auto;
   min-height: 80px;
 }
 .evento-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
   background: none;
-  border: none; border-right: 1px solid var(--gray-dim);
-  padding: 0.6rem 1.6rem;
+  border: 1px solid var(--gray-dim);
+  border-radius: 40px;
+  padding: 0.7rem 1.8rem;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
   color: var(--gray);
   transition: all 0.3s; white-space: nowrap;
 }
-.evento-btn:first-child { border-left: 1px solid var(--gray-dim); }
-.evento-btn:hover { color: var(--white); background: rgba(255,255,255,0.04); }
-.evento-btn.active { color: var(--black); background: var(--white); }
+.evento-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.evento-btn.active { color: #e6d3a8; border-color: #e6d3a8; background: none; }
+
+.evento-total {
+  font-size: 0.65rem; color: var(--gray-mid); font-weight: 400; text-transform: none; letter-spacing: 0;
+}
+.evento-btn.active .evento-total {
+  color: rgba(230, 211, 168, 0.7);
+}
 
 /* Grid de fotos */
 .gal-main {
