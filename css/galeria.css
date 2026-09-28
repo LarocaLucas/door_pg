@@ -152,9 +152,8 @@
 /* Mobile */
 @media (max-width: 900px) {
   .gal-header { padding: calc(var(--nav-h) + 2rem) 1.5rem 2rem; }
-  .gal-categorias { padding: 1.5rem 1.5rem 0.5rem; gap: 1rem; }
-  .cat-btn { font-size: 1.2rem; }
-  .gal-eventos { padding: 1rem 1.5rem; }
+  .gal-categorias { padding: 1.5rem 1.5rem 0.5rem; gap: 0.6rem; }
+  .gal-eventos { padding: 1rem 1.5rem 1.5rem; gap: 0.6rem; }
   .gal-main { padding: 2rem 1.5rem 4rem; }
   .gal-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 4px; }
 
