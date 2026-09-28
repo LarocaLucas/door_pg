@@ -206,6 +206,12 @@
     img.alt = label;
     img.loading = 'lazy';
     img.style.cursor = 'pointer'; // Indica que é clicável
+    
+    // Fallback: se a imagem não existir no R2, carrega o "em-breve.jpeg"
+    img.onerror = function() {
+      this.onerror = null; // Evita loop infinito se o em-breve também não existir
+      this.src = 'https://fotos.doorpg.com.br/agenda/em-breve.jpeg?v=2';
+    };
 
     // Abre o lightbox ao clicar na imagem
     img.addEventListener('click', () => {
