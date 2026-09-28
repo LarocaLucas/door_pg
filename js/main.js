@@ -193,9 +193,10 @@
   const AGENDA = [
     { file: '25-09', label: 'Sexta-feira · 25/09' },
     { file: '26-09', label: 'Sábado · 26/09' },
+    { file: '17-10', label: 'Sábado · 17/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35093/duda-bertelli-----door' },
   ];
 
-  AGENDA.forEach(({ file, label }) => {
+  AGENDA.forEach(({ file, label, ticketUrl }) => {
     const card = document.createElement('div');
     card.className = 'agenda-card';
 
@@ -217,6 +218,22 @@
 
     card.appendChild(img);
     card.appendChild(dateTag);
+
+    if (ticketUrl) {
+      const ticketBtn = document.createElement('a');
+      ticketBtn.href = ticketUrl;
+      ticketBtn.target = '_blank';
+      ticketBtn.rel = 'noopener';
+      ticketBtn.className = 'btn-primary';
+      ticketBtn.style.marginTop = '12px';
+      ticketBtn.style.width = '100%';
+      ticketBtn.style.textAlign = 'center';
+      ticketBtn.style.padding = '10px';
+      ticketBtn.style.fontSize = '0.9rem';
+      ticketBtn.textContent = 'Comprar Ingresso';
+      card.appendChild(ticketBtn);
+    }
+
     grid.appendChild(card);
   });
 })();
