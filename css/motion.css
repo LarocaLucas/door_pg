@@ -1,0 +1,63 @@
+/* ==========================================================
+   DOOR PG — motion.css (v2.0)
+   Camada de movimento sobre o site atual. Só vale quando o
+   motion.js confirma que pode animar (classe .has-motion no <html>).
+   Sem ela (movimento reduzido ou CDN fora), o site fica como antes.
+   ========================================================== */
+
+/* Rolagem suave (Lenis) no lugar do smooth nativo */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+.has-motion { scroll-behavior: auto; }
+
+/* O GSAP passa a cuidar das entradas; o .reveal antigo não anima mais */
+.has-motion .reveal { opacity: 1; transform: none; transition: none; }
+
+/* Navbar some ao descer e volta ao subir */
+.has-motion #navbar { transition: background 0.4s, border-color 0.4s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.has-motion #navbar.nav-hidden { transform: translateY(-100%); }
+
+/* Hero: profundidade com o mouse (as fotos vão para um lado, o texto para o outro) */
+.has-motion .hero-slides { inset: -3%; }
+
+/* Títulos: letras giram em 3D ao entrar */
+.has-motion .section-title { perspective: 600px; }
+.has-motion .section-title .ch { display: inline-block; transform-origin: 50% 100%; backface-visibility: hidden; }
+
+/* Road: linha que acende com a rolagem e bolinhas que acendem ao chegar */
+.has-motion .road-timeline { position: relative; }
+.road-progress {
+  position: absolute; left: -1px; top: 0; width: 1px; height: 100%;
+  background: var(--white); transform-origin: top; transform: scaleY(0);
+  pointer-events: none;
+}
+.has-motion .road-dot { transition: background 0.5s, border-color 0.5s, box-shadow 0.5s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.has-motion .road-item:not(.is-lit) .road-dot { background: var(--gray-dim); border-color: var(--gray-mid); transform: scale(0.7); animation: none; }
+.has-motion .road-item.is-lit .road-dot { transform: scale(1); }
+
+/* Agenda: cartões inclinam em 3D com um reflexo seguindo o ponteiro */
+.has-motion .agenda-card:hover { transform: none; }
+.has-motion .agenda-grid { perspective: 1000px; }
+.card-glare {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.18), transparent 55%);
+  opacity: 0; transition: opacity 0.35s ease;
+}
+.agenda-card:hover .card-glare { opacity: 1; }
+
+/* Reservas e contato: um foco de luz acompanha o ponteiro dentro do cartão */
+.has-motion .reserva-card, .has-motion .contato-card { position: relative; overflow: hidden; isolation: isolate; }
+.has-motion .reserva-card::before, .has-motion .contato-card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.07), transparent 60%);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.has-motion .reserva-card:hover::before, .has-motion .contato-card:hover::before { opacity: 1; }
+
+/* Porta desenhada da localização: o traço se desenha ao entrar */
+.has-motion .local-art { opacity: 0.55; }
+
+@media (hover: none) {
+  .card-glare { display: none; }
+}
