@@ -861,7 +861,7 @@ img, svg { max-width: 100%; height: auto; }
 .js body.has-transition.is-unlocked:not(.is-open) .page-transition-wrapper {
   -webkit-mask-size: 520vmax auto; mask-size: 520vmax auto;
 }
-.js body.has-transition.is-open { overflow: auto; background: transparent; }
+.js body.has-transition.is-open { overflow: auto; }
 @media (prefers-reduced-motion: reduce) {
   .js body.has-transition:not(.is-open) .page-transition-wrapper { -webkit-mask-image: none; mask-image: none; }
 }

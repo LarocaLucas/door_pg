@@ -28,8 +28,8 @@
     });
     setTimeout(openTransition, 2600); // garantia, caso o transitionend não dispare
   }
-  // setTimeout curto (50ms) é mais confiável que double rAF entre navegadores para o first paint de grandes repaints
-  setTimeout(() => targetEl.classList.add('is-unlocked'), 50);
+  // setTimeout (150ms) é mais confiável que double rAF entre navegadores mobile para o first paint
+  setTimeout(() => targetEl.classList.add('is-unlocked'), 150);
 })();
 
 /* ── 2. NAVBAR ─────────────────────────────────────────
