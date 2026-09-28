@@ -132,10 +132,10 @@ function renderDatas(catId) {
   // Seleciona o primeiro evento dessa categoria por padrão
   eventoAtivo = eventosDaCategoria[0].folder;
 
-  eventosDaCategoria.forEach(({ folder, label }) => {
+  eventosDaCategoria.forEach(({ folder, label, total }) => {
     const btn = document.createElement('button');
     btn.className = 'evento-btn' + (folder === eventoAtivo ? ' active' : '');
-    btn.textContent = label;
+    btn.innerHTML = `${label} <span class="evento-total">${total} fotos</span>`;
     btn.setAttribute('aria-pressed', folder === eventoAtivo);
     
     btn.addEventListener('click', () => {
