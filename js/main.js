@@ -7,6 +7,31 @@
 'use strict';
 
 
+/* ── 1. TRANSIÇÃO DE PÁGINA (FECHADURA) ───────────────────
+ * Abertura pela fechadura.
+ * is-unlocked dispara; is-open remove a máscara ao terminar
+ ─────────────────────────────────────────────────────── */
+(function initTransition() {
+  const isIndex = !!document.getElementById('hero');
+  const isGeneric = document.body.classList.contains('has-transition');
+  if (!isIndex && !isGeneric) return;
+
+  const targetEl = isIndex ? document.getElementById('hero') : document.body;
+  const media = isIndex ? document.getElementById('heroMedia') : document.getElementById('pageTransition');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  const openTransition = () => targetEl.classList.add('is-open');
+  if (reduceMotion) openTransition();
+  else {
+    media && media.addEventListener('transitionend', e => {
+      if (e.target === media && e.propertyName.includes('mask')) openTransition();
+    });
+    setTimeout(openTransition, 2600); // garantia, caso o transitionend não dispare
+  }
+  // Dois frames de espera garantem que o navegador pintou o estado inicial antes de animar
+  requestAnimationFrame(() => requestAnimationFrame(() => targetEl.classList.add('is-unlocked')));
+})();
+
 /* ── 2. NAVBAR ─────────────────────────────────────────
  * Adiciona classe 'scrolled' ao rolar a página
  * Controla menu mobile
