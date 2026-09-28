@@ -17,7 +17,7 @@
   --nav-h:    72px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: var(--black); }
 
 body {
   font-family: 'Montserrat', sans-serif;

@@ -35,10 +35,10 @@
   border: 1px solid var(--gray-dim);
   border-radius: 40px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem; font-weight: 400; letter-spacing: 0.05em;
+  font-size: 0.75rem; font-weight: 400; letter-spacing: 0.05em;
   color: var(--gray);
   cursor: pointer; transition: all 0.3s;
-  padding: 0.5rem 1.4rem;
+  padding: 0.4rem 1.2rem;
   white-space: nowrap;
 }
 .cat-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
@@ -62,10 +62,10 @@
   background: none;
   border: 1px solid var(--gray-dim);
   border-radius: 40px;
-  padding: 0.5rem 1.4rem;
+  padding: 0.4rem 1.2rem;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem; font-weight: 400;
+  font-size: 0.75rem; font-weight: 400;
   letter-spacing: 0.05em;
   color: var(--gray);
   transition: all 0.3s; white-space: nowrap;
@@ -74,7 +74,7 @@
 .evento-btn.active { color: #e6d3a8; border-color: #e6d3a8; background: none; }
 
 .evento-total {
-  font-size: 0.65rem; color: var(--gray-mid); font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: 0.2rem;
+  font-size: 0.6rem; color: var(--gray-mid); font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: 0.2rem;
 }
 .evento-btn.active .evento-total {
   color: rgba(230, 211, 168, 0.7);
