@@ -216,22 +216,30 @@
     dateTag.className = 'agenda-date';
     dateTag.textContent = label;
 
-    card.appendChild(img);
-    card.appendChild(dateTag);
+    const imgWrap = document.createElement('div');
+    imgWrap.style.position = 'relative';
+    imgWrap.appendChild(img);
+    imgWrap.appendChild(dateTag);
+
+    card.appendChild(imgWrap);
 
     if (ticketUrl) {
+      const btnWrap = document.createElement('div');
+      btnWrap.style.padding = '15px'; // Espaço em volta do botão
+      
       const ticketBtn = document.createElement('a');
       ticketBtn.href = ticketUrl;
       ticketBtn.target = '_blank';
       ticketBtn.rel = 'noopener';
       ticketBtn.className = 'btn-primary';
-      ticketBtn.style.marginTop = '12px';
       ticketBtn.style.width = '100%';
       ticketBtn.style.textAlign = 'center';
-      ticketBtn.style.padding = '10px';
-      ticketBtn.style.fontSize = '0.9rem';
+      ticketBtn.style.padding = '12px';
+      ticketBtn.style.fontSize = '0.95rem';
       ticketBtn.textContent = 'Comprar Ingresso';
-      card.appendChild(ticketBtn);
+      
+      btnWrap.appendChild(ticketBtn);
+      card.appendChild(btnWrap);
     }
 
     grid.appendChild(card);
