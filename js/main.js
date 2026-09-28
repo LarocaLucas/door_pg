@@ -191,8 +191,8 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '25-09', label: 'Sexta-feira · 25/09' },
-    { file: '26-09', label: 'Sábado · 26/09' },
+    { file: '02-10', label: 'Sexta-feira · 02/10' },
+    { file: '03-10', label: 'Sábado · 03/10' },
     { file: '17-10', label: 'Sábado · 17/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35093/duda-bertelli-----door' },
   ];
 
