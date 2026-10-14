@@ -216,10 +216,8 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '09-10', label: 'Sexta-feira · 09/10' },
-    { file: '10-10', label: 'Sábado · 10/10' },
-    { file: '11-10', label: 'Domingo · 11/10' },
-    { file: '17-10', label: 'Sábado · 17/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35093/duda-bertelli-----door' },
+    { file: '16-10', label: 'Sexta · 16/10' },
+    { file: '17-10-02', label: 'Sábado · 17/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35093/duda-bertelli-----door' },
   ];
 
   AGENDA.forEach(({ file, label, ticketUrl }) => {
