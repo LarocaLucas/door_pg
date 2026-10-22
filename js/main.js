@@ -217,7 +217,9 @@
    */
   const AGENDA = [
     { file: '23-10', label: 'Sexta · 23/10' },
-    { file: '24-10', label: 'Sábado · 24/10' },
+    { file: '24-10', label: 'Sábado · 24/10'},
+    { file: '31-10', label: 'Halloween · 31/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35242/halloween-door-by-leo-picon' },
+   
   ];
 
   AGENDA.forEach(({ file, label, ticketUrl }) => {
