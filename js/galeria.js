@@ -32,7 +32,7 @@ const CATEGORIAS = [
  * Registro de eventos disponíveis na galeria.
  * @type {Array<{folder: string, label: string, total: number, categoria: string}>}
  */
-const EVENTOS = [
+let EVENTOS = [
   { folder: '26-09-2026', label: '26 · 09 · 2026', total: 58, categoria: '09-2026' },
   { folder: '25-09-2026', label: '25 · 09 · 2026', total: 70, categoria: '09-2026' },
   { folder: '19-09-2026', label: '19 · 09 · 2026', total: 70, categoria: '09-2026' },
@@ -78,7 +78,24 @@ let categoriaAtiva = CATEGORIAS[0]?.id ?? null;
 let eventoAtivo = null;
 
 /* ── Inicialização ────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
+const GALERIA_URL = 'https://fotos.doorpg.com.br/site/galeria.json';
+const FOTOS_BASE = 'https://fotos.doorpg.com.br';
+
+/** Busca a lista de eventos no R2 (Central laroca.dev); se falhar/inválida, mantém EVENTOS embutido. */
+async function carregarEventos() {
+  try {
+    const r = await fetch(GALERIA_URL, { cache: 'no-cache' });
+    if (!r.ok) return;
+    const j = await r.json();
+    const ev = j && Array.isArray(j.eventos)
+      ? j.eventos.filter(e => e && e.folder && e.label && e.total > 0 && e.categoria)
+      : [];
+    if (ev.length) EVENTOS = ev;
+  } catch (e) { /* mantém a lista embutida */ }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await carregarEventos();
   renderCategorias();
   if (categoriaAtiva) selectCategoria(categoriaAtiva);
 });
@@ -198,7 +215,7 @@ function renderFotos(folder) {
   // Cria cards para cada foto
   for (let i = 1; i <= evento.total; i++) {
     const src = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg?v=20260918`;
-    const card = criarFotoCard(src, i, folder);
+    const card = criarFotoCard(src, i, folder, evento.miniaturas === true);
     grid.appendChild(card);
   }
 }
@@ -211,9 +228,10 @@ function renderFotos(folder) {
  * @param {string} src    - Caminho da imagem
  * @param {number} num    - Número da foto
  * @param {string} folder - Pasta do evento (para nome do arquivo)
+ * @param {boolean} miniaturas - true: grade usa <folder>/mini/NN.webp do R2
  * @returns {HTMLElement}
  */
-function criarFotoCard(src, num, folder) {
+function criarFotoCard(src, num, folder, miniaturas) {
   const card = document.createElement('div');
   card.className = 'foto-card';
 
@@ -226,7 +244,10 @@ function criarFotoCard(src, num, folder) {
   const img = document.createElement('img');
   // Usamos o proxy gratuito wsrv.nl para criar uma miniatura de 400px (aprox. 30KB)
   // Isso evita o travamento catastrófico de carregar 50 arquivos de 20MB simultaneamente
-  img.src = `https://wsrv.nl/?url=${encodeURIComponent(src)}&w=400&q=80`;
+  img.src = miniaturas
+    ? `${FOTOS_BASE}/${folder}/mini/${String(num).padStart(2, '0')}.webp`
+    : `https://wsrv.nl/?url=${encodeURIComponent(src)}&w=400&q=80`;
+  img.decoding = 'async';
   img.alt = `Foto ${num} — Door PG ${folder}`;
   img.loading = 'lazy'; // carregamento lazy para performance
 
