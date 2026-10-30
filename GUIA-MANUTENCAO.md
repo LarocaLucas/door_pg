@@ -256,3 +256,9 @@ Após cada evento:
 **O site não atualizou após o push:**
 - Aguarde 1-2 minutos e atualize com `Ctrl+Shift+R`
 - Se ainda não atualizou, verifique se o push foi bem sucedido com `git log --oneline -3`
+
+---
+
+## Com a Central laroca.dev
+
+A agenda e a galeria são atualizadas pelo programa Central laroca.dev, que publica `site/agenda.json` e `site/galeria.json` no R2 (`fotos.doorpg.com.br`). O site lê esses arquivos ao carregar, sem commit nem deploy. As listas `AGENDA` (`js/main.js`) e `EVENTOS` (`js/galeria.js`) ficam embutidas só como reserva, usadas se o JSON faltar ou estiver inválido.
