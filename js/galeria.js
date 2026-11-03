@@ -17,7 +17,7 @@
  * Registro de categorias/meses.
  * @type {Array<{id: string, label: string}>}
  */
-const CATEGORIAS = [
+let CATEGORIAS = [
   { id: 'duda', label: 'Show Duda Bertelli' },
   { id: '10-2026', label: 'Outubro 2026' },
   { id: '09-2026', label: 'Setembro 2026' },
@@ -96,6 +96,14 @@ async function carregarEventos() {
       ? j.eventos.filter(e => e && e.folder && e.label && e.total > 0 && e.categoria)
       : [];
     if (ev.length) EVENTOS = ev;
+    // Abas: a Central grava `categorias` (mês novo entra no topo); sem a lista, mantém a embutida.
+    const cats = j && Array.isArray(j.categorias)
+      ? j.categorias.filter(c => c && c.id && c.label && EVENTOS.some(e => e.categoria === c.id))
+      : [];
+    if (cats.length) {
+      CATEGORIAS = cats;
+      categoriaAtiva = CATEGORIAS[0].id;
+    }
   } catch (e) { /* mantém a lista embutida */ }
 }
 
