@@ -256,3 +256,17 @@ Após cada evento:
 **O site não atualizou após o push:**
 - Aguarde 1-2 minutos e atualize com `Ctrl+Shift+R`
 - Se ainda não atualizou, verifique se o push foi bem sucedido com `git log --oneline -3`
+
+---
+
+## Com a Central laroca.dev
+
+A agenda e a galeria são atualizadas pelo programa Central laroca.dev, que publica `site/agenda.json` e `site/galeria.json` no R2 (`fotos.doorpg.com.br`). O site lê esses arquivos ao carregar, sem commit nem deploy. As listas `AGENDA` (`js/main.js`) e `EVENTOS` (`js/galeria.js`) ficam embutidas só como reserva, usadas se o JSON faltar ou estiver inválido.
+
+### Atualizar sem commit: editar os JSON no R2 (caminho novo)
+
+Os dois arquivos já estão no bucket `door-fotos`, em `site/agenda.json` e `site/galeria.json` (no ar em 03/11/2026, com os dados da `main`). Para atualizar, baixe, edite e envie de volta (painel do R2 ou `npx wrangler r2 object put door-fotos/site/<arquivo>.json --file <arquivo> --content-type application/json --remote`). A Central laroca.dev vai ganhar uma tela para isso. Depois de enviar, confira em `https://fotos.doorpg.com.br/site/agenda.json`.
+
+- `agenda.json`: `{ "itens": [ { "file": "23-10", "label": "Sexta · 23/10", "ticketUrl": "https://...", "data": "2026-10-23" } ] }`. `ticketUrl` e `data` são opcionais; com `data` (AAAA-MM-DD), o item some do site depois do dia. Se a lista ficar vazia depois do filtro, a agenda aparece vazia (o reserva só vale se o JSON faltar ou for inválido). A arte fica em `agenda/<file>.jpeg`.
+- `galeria.json`: `{ "eventos": [ { "folder": "17-10-2026", "label": "17 · 10 · 2026", "total": 144, "categoria": "duda" } ] }`. As categorias (`id`/nome) continuam em `CATEGORIAS` no `js/galeria.js`. Se um evento tiver `"miniaturas": true`, a grade usa `<folder>/mini/NN.webp` (ainda não existem; sem isso usa a foto original).
+- O vídeo de fundo do mobile agora é `hero/hero-video-door-min.mp4` (5,3 MB; o original `hero-video-door.mp4` continua no R2, sem uso).

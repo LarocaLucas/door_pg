@@ -93,7 +93,7 @@
 
   // No mobile, roda o vídeo e não cria slideshow
   if (window.innerWidth <= 900) {
-    container.innerHTML = '<video src="https://fotos.doorpg.com.br/hero/hero-video-door.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>';
+    container.innerHTML = '<video src="https://fotos.doorpg.com.br/hero/hero-video-door-min.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>';
     if (dotsEl) dotsEl.style.display = 'none';
     return;
   }
@@ -222,7 +222,26 @@
    
   ];
 
-  AGENDA.forEach(({ file, label, ticketUrl }) => {
+  const AGENDA_URL = 'https://fotos.doorpg.com.br/site/agenda.json';
+
+  /** Busca a agenda no R2 (Central laroca.dev); null se falhar/inválida/vazia → usa AGENDA embutida. */
+  async function carregarAgenda() {
+    try {
+      const r = await fetch(AGENDA_URL, { cache: 'no-cache' });
+      if (!r.ok) return null;
+      const j = await r.json();
+      if (!j || !Array.isArray(j.itens) || !j.itens.length) return null;
+      const hoje = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' }); // AAAA-MM-DD
+      const itens = j.itens.filter(i => i && i.file && i.label);
+      if (!itens.length) return null;
+      return itens.filter(i => !i.data || i.data >= hoje);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function renderAgenda(lista) {
+  lista.forEach(({ file, label, ticketUrl }) => {
     const card = document.createElement('div');
     card.className = 'agenda-card';
 
@@ -276,6 +295,9 @@
 
     grid.appendChild(card);
   });
+  }
+
+  carregarAgenda().then(lista => renderAgenda(lista || AGENDA));
 })();
 
 
