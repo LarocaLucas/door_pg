@@ -18,6 +18,8 @@
  * @type {Array<{id: string, label: string}>}
  */
 const CATEGORIAS = [
+  { id: 'duda', label: 'Show Duda Bertelli' },
+  { id: '10-2026', label: 'Outubro 2026' },
   { id: '09-2026', label: 'Setembro 2026' },
   { id: '08-2026', label: 'Agosto 2026' },
   { id: 'pq&n', label: 'Pedro Qualy & Nog' },
@@ -33,8 +35,11 @@ const CATEGORIAS = [
  * @type {Array<{folder: string, label: string, total: number, categoria: string}>}
  */
 let EVENTOS = [
-  { folder: '26-09-2026', label: '26 · 09 · 2026', total: 58, categoria: '09-2026' },
-  { folder: '25-09-2026', label: '25 · 09 · 2026', total: 70, categoria: '09-2026' },
+  { folder: '17-10-2026', label: '17 · 10 · 2026', total: 144, categoria: 'duda' },
+  { folder: '03-10-2026', label: '03 · 10 · 2026', total: 36, categoria: '10-2026' },
+  { folder: '02-10-2026', label: '02 · 10 · 2026', total: 22, categoria: '10-2026' },
+  { folder: '26-09-2026', label: '26 · 09 · 2026', total: 22, categoria: '09-2026' },
+  { folder: '25-09-2026', label: '25 · 09 · 2026', total: 33, categoria: '09-2026' },
   { folder: '19-09-2026', label: '19 · 09 · 2026', total: 70, categoria: '09-2026' },
   { folder: '18-09-2026', label: '18 · 09 · 2026', total: 145, categoria: '09-2026' },
   { folder: '14-09-2026', label: '14 · 09 · 2026', total: 64, categoria: '09-2026' },

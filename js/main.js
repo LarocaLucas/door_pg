@@ -216,9 +216,10 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '02-10', label: 'Sexta-feira · 02/10' },
-    { file: '03-10', label: 'Sábado · 03/10' },
-    { file: '17-10', label: 'Sábado · 17/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35093/duda-bertelli-----door' },
+    { file: '23-10', label: 'Sexta · 23/10' },
+    { file: '24-10', label: 'Sábado · 24/10'},
+    { file: '31-10', label: 'Halloween · 31/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35242/halloween-door-by-leo-picon' },
+   
   ];
 
   const AGENDA_URL = 'https://fotos.doorpg.com.br/site/agenda.json';
