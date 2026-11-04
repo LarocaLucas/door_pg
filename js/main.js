@@ -216,9 +216,9 @@
    * e registrando aqui.
    */
   const AGENDA = [
-    { file: '23-10', label: 'Sexta · 23/10' },
-    { file: '24-10', label: 'Sábado · 24/10'},
-    { file: '31-10', label: 'Halloween · 31/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35242/halloween-door-by-leo-picon' },
+    { file: '06-11', label: 'Sexta · 06/11' },
+    { file: '07-11', label: 'Sábado · 07/11'},
+   /* { file: '31-10', label: 'Halloween · 31/10', ticketUrl: 'https://www.ingressonacional.com.br/evento/35242/halloween-door-by-leo-picon' },*/
    
   ];
 
