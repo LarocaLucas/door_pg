@@ -86,6 +86,14 @@ let categoriaAtiva = CATEGORIAS[0]?.id ?? null;
 let eventoAtivo = null;
 
 /* ── Inicialização ────────────────────────────────── */
+/** Números das fotos que aparecem: 1..total menos as `ocultas` (escolhidas na Central). */
+function fotosVisiveis(e) {
+  const fora = new Set(Array.isArray(e.ocultas) ? e.ocultas : []);
+  const lista = [];
+  for (let n = 1; n <= e.total; n++) if (!fora.has(n)) lista.push(n);
+  return lista;
+}
+
 const GALERIA_URL = 'https://fotos.doorpg.com.br/site/galeria.json';
 const FOTOS_BASE = 'https://fotos.doorpg.com.br';
 
@@ -96,7 +104,7 @@ async function carregarEventos() {
     if (!r.ok) return;
     const j = await r.json();
     const ev = j && Array.isArray(j.eventos)
-      ? j.eventos.filter(e => e && e.folder && e.label && e.total > 0 && e.categoria)
+      ? j.eventos.filter(e => e && e.folder && e.label && e.total > 0 && e.categoria && fotosVisiveis(e).length)
       : [];
     if (ev.length) EVENTOS = ev;
     // Abas: a Central grava `categorias` (mês novo entra no topo); sem a lista, mantém a embutida.
@@ -167,10 +175,11 @@ function renderDatas(catId) {
   // Seleciona o primeiro evento dessa categoria por padrão
   eventoAtivo = eventosDaCategoria[0].folder;
 
-  eventosDaCategoria.forEach(({ folder, label, total }) => {
+  eventosDaCategoria.forEach((ev) => {
+    const { folder, label } = ev;
     const btn = document.createElement('button');
     btn.className = 'evento-btn' + (folder === eventoAtivo ? ' active' : '');
-    btn.innerHTML = `${label} <span class="evento-total">${total} fotos</span>`;
+    btn.innerHTML = `${label} <span class="evento-total">${fotosVisiveis(ev).length} fotos</span>`;
     btn.setAttribute('aria-pressed', folder === eventoAtivo);
     
     btn.addEventListener('click', () => {
@@ -221,19 +230,20 @@ function renderFotos(folder) {
 
   if (empty) empty.style.display = 'none';
 
-  // Monta a lista de fotos para o lightbox
-  for (let i = 1; i <= evento.total; i++) {
+  // Só as fotos visíveis (sem as `ocultas`), na grade e no lightbox
+  const numeros = fotosVisiveis(evento);
+  numeros.forEach((i) => {
     const rawSrc = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg?v=20260918`;
     const hdUrl = `https://wsrv.nl/?url=${encodeURIComponent(rawSrc)}&w=1200&q=85`;
     currentGalleryList.push({ hdUrl, rawSrc, folder, num: i });
-  }
+  });
 
   // Cria cards para cada foto
-  for (let i = 1; i <= evento.total; i++) {
+  numeros.forEach((i, k) => {
     const src = `https://fotos.doorpg.com.br/${folder}/${String(i).padStart(2, "0")}.jpg?v=20260918`;
-    const card = criarFotoCard(src, i, folder, evento.miniaturas === true);
+    const card = criarFotoCard(src, i, folder, evento.miniaturas === true, k);
     grid.appendChild(card);
-  }
+  });
 }
 
 /**
@@ -245,9 +255,10 @@ function renderFotos(folder) {
  * @param {number} num    - Número da foto
  * @param {string} folder - Pasta do evento (para nome do arquivo)
  * @param {boolean} miniaturas - true: grade usa <folder>/mini/NN.webp do R2
+ * @param {number} indice - posição na lista do lightbox (pula as ocultas)
  * @returns {HTMLElement}
  */
-function criarFotoCard(src, num, folder, miniaturas) {
+function criarFotoCard(src, num, folder, miniaturas, indice) {
   const card = document.createElement('div');
   card.className = 'foto-card';
 
@@ -286,7 +297,7 @@ function criarFotoCard(src, num, folder, miniaturas) {
   // Abre o lightbox ao clicar no overlay com navegação
   overlay.addEventListener('click', () => {
     if (window.openGalleryLightbox) {
-      window.openGalleryLightbox(currentGalleryList, num - 1);
+      window.openGalleryLightbox(currentGalleryList, indice);
     }
   });
 
