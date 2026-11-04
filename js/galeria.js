@@ -18,6 +18,7 @@
  * @type {Array<{id: string, label: string}>}
  */
 let CATEGORIAS = [
+  { id: 'leo', label: 'Show Leo Picon' },
   { id: 'duda', label: 'Show Duda Bertelli' },
   { id: '10-2026', label: 'Outubro 2026' },
   { id: '09-2026', label: 'Setembro 2026' },
@@ -35,6 +36,8 @@ let CATEGORIAS = [
  * @type {Array<{folder: string, label: string, total: number, categoria: string}>}
  */
 let EVENTOS = [
+  { folder: '31-10-2026', label: '31 · 10 · 2026', total: 151, categoria: 'leo' },
+  { folder: '23-10-2026', label: '23 · 10 · 2026', total: 103, categoria: '10-2026' },
   { folder: '17-10-2026', label: '17 · 10 · 2026', total: 144, categoria: 'duda' },
   { folder: '03-10-2026', label: '03 · 10 · 2026', total: 36, categoria: '10-2026' },
   { folder: '02-10-2026', label: '02 · 10 · 2026', total: 22, categoria: '10-2026' },
