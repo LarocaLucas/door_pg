@@ -86,11 +86,16 @@ let categoriaAtiva = CATEGORIAS[0]?.id ?? null;
 let eventoAtivo = null;
 
 /* ── Inicialização ────────────────────────────────── */
-/** Números das fotos que aparecem: 1..total menos as `ocultas` (escolhidas na Central). */
+/**
+ * Números das fotos que aparecem, na ordem de exibição: 1..total menos as `ocultas`; se o álbum tem
+ * `ordem` (escolhida na Central), esses números vêm primeiro e os que faltam seguem em ordem crescente.
+ */
 function fotosVisiveis(e) {
   const fora = new Set(Array.isArray(e.ocultas) ? e.ocultas : []);
-  const lista = [];
-  for (let n = 1; n <= e.total; n++) if (!fora.has(n)) lista.push(n);
+  const vale = (n) => Number.isInteger(n) && n >= 1 && n <= e.total && !fora.has(n);
+  const lista = [...new Set((Array.isArray(e.ordem) ? e.ordem : []).filter(vale))];
+  const ja = new Set(lista);
+  for (let n = 1; n <= e.total; n++) if (vale(n) && !ja.has(n)) lista.push(n);
   return lista;
 }
 
